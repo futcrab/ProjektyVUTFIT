@@ -1,0 +1,6 @@
+work	"FSM.vhd"
+work	"ROM.vhd"
+work	"column.vhd"
+work	"counter_48.vhd"
+work	"counter_N.vhd"
+work	"effects_pack.vhd"

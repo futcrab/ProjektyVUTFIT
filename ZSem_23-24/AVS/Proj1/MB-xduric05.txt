@@ -1,0 +1,23 @@
+#### Stručně odpovězte na následující otázky: ######
+
+
+1. Byla "Line" vektorizace časově efektivní? Proč?
+==============================================================================
+Line vektorizácia bola menej časovo efektívna ako Batch implementácia, hlavne pri väčších maticiach. Bolo to spôsobené väčším výskytom cache miss-ov pri výpočte vačších matíc, kedy sa už nezmestia dáta z pomocných polí pre celý riadok do cache pamäte.
+
+2. Jaká byla dosažena výkonnost v Intel Advisoru pro jednotlivé implementace 
+(v GFLOPS)?
+==============================================================================
+Line - 34,65 GFLOPS (slučka v roofline modeli: 42,295 GFLOPS)
+Batch - 44,61 GFLOPS (slučka v roofline modeli: 75,109 GFLOPS)
+
+3. Jaká část kódu byla vektorizována v "Line" implementaci? Vyčteme tuto 
+informaci i u batch kalkulátoru?
+==============================================================================
+Vektorizovaná bola hlavne najvnútornejšia slučka, kde sa počítala hodnota komplexného čísla "z" v danej iterácii. V batch implementácii je to rovnaká slučka, ale počíta hodnotu "z" len pre časť riadku v aktuálnom bloku.
+
+4. Co vyčteme z Roofline modelu pro obě vektorizované implementace?
+==============================================================================
+Vidíme hodnoty GFLOPS a aritmetickej intenzity pre jednotlivé vektorizované slučky. Takisto vidíme limity pre GFLOPS jednotlivých implementácií. Ak v implementácii nízka hodnota aritmetickej intenzity tak sú implementácie limitované priepustnosťou pamätí a ak je hodnota FLOP/Byte vyššia, tak už je implementácia limitovaná teoretickým počtom GFLOPS podľa používaného typu inštrukcie na výpočet. Obe osy majú logaritmické škálovanie a čím je implementácia bližšie na modeli k limitom, tým lepšie je vektorizovaná.
+
+

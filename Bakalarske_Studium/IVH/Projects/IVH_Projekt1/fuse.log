@@ -1,0 +1,21 @@
+Running: /opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/fuse -intstyle ise -incremental -o /mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/IVH_Projekt1/counter_tb_isim_beh.exe -prj /mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/IVH_Projekt1/counter_tb_beh.prj work.counter_tb 
+ISim P.20131013 (signature 0xfbc00daa)
+Number of CPUs detected in this system: 12
+Turning on mult-threading, number of parallel sub-compilation jobs: 24 
+Determining compilation order of HDL files
+Parsing VHDL file "/mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/IVH_Projekt1/counter.vhd" into library work
+Parsing VHDL file "/mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/IVH_Projekt1/counter_tb.vhd" into library work
+Starting static elaboration
+Completed static elaboration
+Fuse Memory Usage: 83176 KB
+Fuse CPU Usage: 920 ms
+Compiling package standard
+Compiling package std_logic_1164
+Compiling architecture behavioral of entity counter [\counter(1,2,3)\]
+Compiling architecture behavior of entity counter_tb
+Time Resolution for simulation is 1ps.
+Compiled 5 VHDL Units
+Built simulation executable /mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/IVH_Projekt1/counter_tb_isim_beh.exe
+Fuse Memory Usage: 1697420 KB
+Fuse CPU Usage: 1050 ms
+GCC CPU Usage: 580 ms

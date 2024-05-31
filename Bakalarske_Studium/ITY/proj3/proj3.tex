@@ -1,0 +1,199 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{pict2e}
+\usepackage{times}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{dsfont}
+\usepackage{amsfonts}
+\usepackage{stackrel}
+\usepackage{multirow}
+\usepackage{graphics}
+\usepackage{lscape}
+\usepackage[ruled,czech,noline,longend,linesnumbered]{algorithm2e}
+\usepackage[dvipsnames, usenames]{color}
+\usepackage[left=2cm,top=3cm,text={17cm, 24cm}]{geometry}
+\usepackage[unicode]{hyperref}
+
+\begin{document}
+\begin{titlepage}
+\begin{center}
+\Huge
+\textsc{Vysoké učení technické v~Brně}\\
+\huge
+\textsc{Fakulta informačních technologií}\\
+\vspace{\stretch{0.382}}
+\LARGE Typografie a publikování \,--\, 3. projekt\\
+\Huge Tabulky a obrázky
+\vspace{\stretch{0.618}}
+\end{center}
+{\LARGE 31.3.2022 \hfill
+Peter Ďurica}
+\thispagestyle{empty}
+\end{titlepage}
+\clearpage
+
+\setcounter{page}{1}
+\section{Úvodní strana}
+Název práce umístěte do zlatého řezu a nezapomeňte uvést \uv{dnešní} datum a vaše jméno a příjmení.
+\section{Tabulky}
+Pro sázení tabulek můžeme použít buď prostředí \texttt{tabbing} nebo prostředí \texttt{tabular}.
+\subsection{Prostředí \texttt{tabbing}}
+Při použití \texttt{tabing} vypadá tabulka následovně:
+\begin{tabbing}
+Vodní melouny \quad \= 35,\,--\, \quad \= 1 kus \kill
+\textbf{Ovoce} \> \textbf{Cena} \> \textbf{Množství} \\
+Jablka \> 25,90 \> 3 kg \\
+Hrušky \> 27,40 \> 2,5 kg \\
+Vodní melouny \> 35,\,--\, \> 1 kus \\
+\end{tabbing}
+Toto prostředí se dá také použít pro sázení algoritmů, ovšem vhodnější je použít prostředí \texttt{algorithm} nebo \texttt{algorithm2e} (viz sekce \ref{sec3}).
+\subsection{Prostředí \texttt{tabular}}
+Další možnost, jak vytvořit tabulku, je použít prostředí \texttt{tabular}.Tabulky pak budou vypadat takto\footnote{Kdyby byl problem s~\texttt{cline}, zkuste se podívat třeba sem: \href{http://www.abclinuxu.cz/tex/poradna/show/325037}{http://www.abclinuxu.cz/tex/poradna/show/325037}.}:
+
+\begin{table}[h]
+\centering
+\catcode`\-=12
+\begin{tabular}{| c | c | c |} \hline
+    & \multicolumn{2}{c|}{\textbf{Cena}} \\ \cline{2-3}
+    \textbf{Měna} & \textbf{nákup} & \textbf{prodej} \\ \hline
+    EUR & 24,775 & 25,943 \\
+    GBP & 29,394 & 30,492 \\
+    USD & 22,423 & 23,661 \\ \hline
+\end{tabular}
+\caption{Tabulka kurzů k~dnešnímu dni} \label{tab1}
+\end{table}
+
+\begin{table}[h]
+\centering
+\catcode`\-=12
+\begin{tabular}{| c | c |} \hline
+    $A$ & $\neg A$ \\ \hline
+    \textbf{P} & N \\ \hline
+    \textbf{O} & O~\\ \hline
+    \textbf{X} & X \\ \hline
+    \textbf{N} & P \\ \hline
+\end{tabular}
+\begin{tabular}{| c | c | c | c | c | c |} \hline
+\multicolumn{2}{|c|}{\multirow{2}{*}{$A \wedge B$}} & \multicolumn{4}{c|}{$B$} \\ \cline{3-6}
+\multicolumn{2}{|c|}{} & \textbf{P} & \textbf{O} & \textbf{X} & \textbf{N} \\ \hline
+\multirow{4}{*}{$A$} & \textbf{P} & P & O~& X & N \\ \cline{2-6}
+& \textbf{O} & O~& O~& N & N \\ \cline{2-6}
+& \textbf{X} & X & N & X & N \\ \cline{2-6}
+& \textbf{N} & N & N & N & N \\ \hline
+\end{tabular}
+\begin{tabular}{| c | c | c | c | c | c |} \hline
+\multicolumn{2}{|c|}{\multirow{2}{*}{$A \vee B$}} & \multicolumn{4}{c|}{$B$} \\ \cline{3-6}
+\multicolumn{2}{|c|}{} & \textbf{P} & \textbf{O} & \textbf{X} & \textbf{N} \\ \hline
+\multirow{4}{*}{$A$} & \textbf{P} & P & P & P & P \\ \cline{2-6}
+& \textbf{O} & P & O~& P & O~\\ \cline{2-6}
+& \textbf{X} & P & P & X & X \\ \cline{2-6}
+& \textbf{N} & P & O~& X & N \\ \hline
+\end{tabular}
+\begin{tabular}{| c | c | c | c | c | c |} \hline
+\multicolumn{2}{|c|}{\multirow{2}{*}{$A \rightarrow B$}} & \multicolumn{4}{c|}{$B$} \\ \cline{3-6}
+\multicolumn{2}{|c|}{} & \textbf{P} & \textbf{O} & \textbf{X} & \textbf{N} \\ \hline
+\multirow{4}{*}{$A$} & \textbf{P} & P & O~& X & N \\ \cline{2-6}
+& \textbf{O} & P & O~& P & O~\\ \cline{2-6}
+& \textbf{X} & P & P & X & X \\ \cline{2-6}
+& \textbf{N} & P & P & P & P \\ \hline
+\end{tabular}
+\caption{Protože Kleeneho trojhodnotová logika už je \uv{zastaralá}, uvádíme si zde příklad čtyřhodnotové logiky} \label{tab2}
+\end{table}
+\pagebreak
+\section{Algoritmy} \label{sec3}
+Pokud budeme chtít vysázet algoritmus, můžeme použít prostředí \texttt{algorithm}\footnote{Pro nápovědu, jak zacházet s~prostředím \texttt{algorithm}, můžeme zkusit tuhle stránku:\\ \href{http://ftp.cstug.cz/pub/tex/CTAN/macros/latex/contrib/algorithms/algorithms.pdf}{http://ftp.cstug.cz/pub/tex/CTAN/macros/latex/contrib/algorithms/algorithms.pdf}.} nebo \texttt{algorithm2e}\footnote{Pro \texttt{algorithm2e} zase tuhle: \href{http://ftp.cstug.cz/pub/tex/CTAN/macros/latex/contrib/algorithm2e/doc/algorithm2e.pdf}{http://ftp.cstug.cz/pub/tex/CTAN/macros/latex/contrib/algorithm2e/doc/algorithm2e.pdf}.}. Příklad použití prostředí \texttt{algorithm2e} viz Algoritmus \ref{arg1}.
+\begin{algorithm}[h]
+    \caption{\large \textsc{Fast}SLAM} \label{arg1}
+    \SetNlSty{}{}{:}
+    \SetNlSkip{-0.2cm}
+    \SetKwFor{For}{for}{do}{end~for}
+    \SetAlgoNoLine
+    \SetKwInput{Input}{Input}\SetKwInput{Output}{Output}
+    \DontPrintSemicolon
+    \Input{$(X_{t-1},u_t,z_t)$}
+    \Output{$X_t$}
+    \Indp
+    \BlankLine
+    $\overline{X_t} = X_t = 0$ \\
+    \For{$k = 1 \textnormal{ to } M$}{
+        $x_t^{[k]} = \emph{sample\_motion\_model}(u_t,x_{t-1}^{[k]})$ \\
+        $\omega_t^{[k]} = \emph{measurement\_model}(z_t,x_{t}^{[k]},m_{t-1})$ \\
+        $m_t^{[k]} = updated\_ocupancy\_grid(z_t,x_{t}^{[k]},m_{t-1}^{[k]})$ \\
+        $\overline{X_t} = \overline{X_t} + \langle x_x^{[m]},\omega_t^{[m]}\rangle$}
+    \For{$k = 1 \textnormal{ to } M$}{
+    \textnormal{draw $i$ with probability $\approx \omega_t^{[i]}$}\\
+    \textnormal{add $\langle x_x^{[k]},m_t^{[k]}\rangle$ to $X_t$}}
+    \Return{$X_t$}
+\end{algorithm}
+\section{Obrázky}
+Do našich článků můžeme samozřejmě vkládat obrázky. Pokud je obrázkem fotografie, můžeme klidně použít bitmapový soubor. Pokud by to ale mělo být nějaké schéma nebo něco podobného, je dobrým zvykem takovýto obrázek vytvořit vektorově.
+\begin{figure}[h]
+\centering
+\scalebox{0.38}{\includegraphics{etiopan.eps}
+\reflectbox{\includegraphics{etiopan.eps}}}
+\caption{Malý Etiopánek a jeho bratříček} \label{pic1}
+\end{figure}
+\pagebreak
+\\Rozdíl medzi vektorovým\dots
+\begin{figure}[h]
+    \centering
+    \resizebox{10cm}{!}{\includegraphics{oniisan.eps}}
+    \caption{Vektorový obrázek}
+    \label{pic2}
+\end{figure}
+\\\dots a bitmapovým obrázkem
+\begin{figure}[h]
+    \centering
+    \resizebox{11cm}{!}{\includegraphics{oniisan2.eps}}
+    \caption{Bitmapový obrázek}
+    \label{pic3}
+\end{figure}
+\\se projeví například při zvětšení.
+
+Odkazy (nejen ty) na obrázky \ref{pic1}, \ref{pic2} a \ref{pic3}, na tabulky \ref{tab1} a \ref{tab2} a také na algoritmus \ref{arg1} jsou udělány pomocí křížových odkazů. Pak je ovšem potřeba zdrojový soubor přeložit dvakrát.
+
+Vektorové obrázky lze vytvořit i přímo v~\LaTeX u, například pomocí prostředí \texttt{picture}.
+\pagebreak
+\begin{landscape}
+\begin{figure}
+    \centering
+    \begin{picture}(650,300)
+    
+    \linethickness{6pt}
+    \put(10,40){\line(1,0){630}}
+    \linethickness{1.5pt}
+    \put(100,40){\line(0,1){120}}
+    \put(100,160){\line(1,0){140}}
+    \put(240,145){\line(0,1){30}}
+    \put(240,175){\line(1,0){160}}
+    \put(400,145){\line(0,1){30}}
+    \put(400,152){\line(1,0){160}}
+    \put(560,145){\line(0,1){7}}
+    \put(150,145){\line(1,0){430}}
+    \put(150,125){\line(1,0){430}}
+    \put(150,125){\line(0,1){20}}
+    \put(580,125){\line(0,1){20}}
+    \put(250,118){\line(1,0){320}}
+    \put(250,118){\line(0,-1){32}}
+    \put(140,40){\line(0,1){50}}
+    \put(140,90){\line(1,0){100}}
+    \put(240,90){\line(3,-1){140}}
+    \put(150,125){\line(1,-1){35}}
+    \put(270,80){\line(1,0){310}}
+    \put(570,118){\line(0,-1){38}}
+    \put(580,80){\line(0,-1){40}}
+    
+    \put(550,220){\circle{50}}
+    
+    \linethickness{2pt}
+    \framebox(650,300){}
+    \end{picture}
+    \caption{Vektorový obrázek moderního bydlení vhodného pro 21. století (Buď to vytvořte stejný obrázek, anebo nakreslete pomocí \texttt{picture} váš vlastní domov.)}
+    \label{pic4}
+\end{figure}
+\end{landscape}
+\end{document}
+

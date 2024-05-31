@@ -1,0 +1,43 @@
+Release 13.1 - xst O.40d (nt)
+Copyright (c) 1995-2011 Xilinx, Inc.  All rights reserved.
+--> Parameter TMPDIR set to Z:/proj_template/xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.13 secs
+ 
+--> Parameter xsthdpdir set to Z:/proj_template/xst
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.13 secs
+ 
+--> WARNING:Xst:3164 - Option "-debug" found multiple times in the command line. Only the first occurence is considered.
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling vhdl file "//vboxsvr/fitkit-vbox-202103/proj_template/ROM.vhd" in Library work.
+Architecture behavioral of Entity rom is up to date.
+Compiling vhdl file "//vboxsvr/fitkit-vbox-202103/proj_template/tlv_gp_ifc.vhd" in Library work.
+Compiling vhdl file "//vboxsvr/fitkit-vbox-202103/proj_template/effects_pack.vhd" in Library work.
+Architecture effects_pack of Entity effects_pack is up to date.
+Compiling vhdl file "//vboxsvr/fitkit-vbox-202103/proj_template/FSM.vhd" in Library work.
+Architecture behavioral of Entity fsm is up to date.
+Compiling vhdl file "//vboxsvr/fitkit-vbox-202103/proj_template/column.vhd" in Library work.
+Architecture behavioral of Entity column is up to date.
+Compiling vhdl file "//vboxsvr/fitkit-vbox-202103/proj_template/fpga_inst.vhd" in Library work.
+Entity <tlv_gp_ifc> (Architecture <behavioral>) compiled.
+
+
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.57 secs
+ 
+--> 
+
+Total memory usage is 120540 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :    1 (   0 filtered)
+Number of infos    :    0 (   0 filtered)
+

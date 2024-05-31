@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -o "/mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/fsm_tb_isim_beh.exe" -prj "/mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/fsm_tb_beh.prj" "work.fsm_tb" 

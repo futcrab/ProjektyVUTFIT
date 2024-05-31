@@ -1,0 +1,5 @@
+set -tmpdir "Z:/proj_template/xst/projnav.tmp"
+set -xsthdpdir "Z:/proj_template/xst"
+elaborate
+-ifn FSM.prj
+-ifmt mixed

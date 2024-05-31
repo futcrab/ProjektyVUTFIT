@@ -1,0 +1,584 @@
+--------------------------------------------------------------------------------
+Release 13.1 Trace  (nt)
+Copyright (c) 1995-2011 Xilinx, Inc.  All rights reserved.
+
+C:\XilinxISE\bin\nt\unwrapped\trce.exe -intstyle ise -v 3 -s 4 -n 3 -fastpaths
+-xml fpga.twx fpga.ncd -o fpga.twr fpga.pcf -ucf fpga_fitkit.ucf
+
+Design file:              fpga.ncd
+Physical constraint file: fpga.pcf
+Device,package,speed:     xc3s50,pq208,-4 (PRODUCTION 1.39 2011-02-03)
+Report level:             verbose report
+
+Environment Variable      Effect 
+--------------------      ------ 
+NONE                      No environment variables were set
+--------------------------------------------------------------------------------
+
+INFO:Timing:2752 - To get complete path coverage, use the unconstrained paths 
+   option. All paths that are not constrained will be reported in the 
+   unconstrained paths section(s) of the report.
+INFO:Timing:3339 - The clock-to-out numbers in this timing report are based on 
+   a 50 Ohm transmission line loading model.  For the details of this model, 
+   and for more information on accounting for different loading conditions, 
+   please see the device datasheet.
+INFO:Timing:3390 - This architecture does not support a default System Jitter 
+   value, please add SYSTEM_JITTER constraint to the UCF to modify the Clock 
+   Uncertainty calculation.
+INFO:Timing:3389 - This architecture does not support 'Discrete Jitter' and 
+   'Phase Error' calculations, these terms will be zero in the Clock 
+   Uncertainty calculation.  Please make appropriate modification to 
+   SYSTEM_JITTER to account for the unsupported Discrete Jitter and Phase 
+   Error.
+
+================================================================================
+Timing constraint: NET "smclk_x1" PERIOD = 125 ns HIGH 50%;
+
+ 0 paths analyzed, 0 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 component switching limit errors)
+ Minimum period is  50.000ns.
+--------------------------------------------------------------------------------
+
+Component Switching Limit Checks: NET "smclk_x1" PERIOD = 125 ns HIGH 50%;
+--------------------------------------------------------------------------------
+Slack: 75.000ns (period - (min low pulse limit / (low pulse / period)))
+  Period: 125.000ns
+  Low pulse: 62.500ns
+  Low pulse limit: 25.000ns (Tdcmpw_CLKIN_1_10)
+  Physical resource: DCMclkgen/DCM_INST/CLKIN
+  Logical resource: DCMclkgen/DCM_INST/CLKIN
+  Location pin: DCM_X0Y0.CLKIN
+  Clock network: smclk_x1
+--------------------------------------------------------------------------------
+Slack: 75.000ns (period - (min high pulse limit / (high pulse / period)))
+  Period: 125.000ns
+  High pulse: 62.500ns
+  High pulse limit: 25.000ns (Tdcmpw_CLKIN_1_10)
+  Physical resource: DCMclkgen/DCM_INST/CLKIN
+  Logical resource: DCMclkgen/DCM_INST/CLKIN
+  Location pin: DCM_X0Y0.CLKIN
+  Clock network: smclk_x1
+--------------------------------------------------------------------------------
+Slack: 121.430ns (period - min period limit)
+  Period: 125.000ns
+  Min period limit: 3.570ns (280.112MHz) (Tdcmpc)
+  Physical resource: DCMclkgen/DCM_INST/CLKIN
+  Logical resource: DCMclkgen/DCM_INST/CLKIN
+  Location pin: DCM_X0Y0.CLKIN
+  Clock network: smclk_x1
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: PERIOD analysis for net "DCMclkgen/CLKFX_BUF" derived from  
+NET "smclk_x1" PERIOD = 125 ns HIGH 50%;  divided by 3.57 to 35 nS and duty 
+cycle corrected to HIGH 17.500 nS  
+
+ 8072 paths analyzed, 2357 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors, 0 component switching limit errors)
+ Minimum period is  11.762ns.
+--------------------------------------------------------------------------------
+
+Paths for end point fpga_inst/FSM/vector_map_init_42 (SLICE_X3Y15.SR), 24 paths
+--------------------------------------------------------------------------------
+Slack (setup path):     23.238ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               fpga_inst/FSM/state_act_FSM_FFd4 (FF)
+  Destination:          fpga_inst/FSM/vector_map_init_42 (FF)
+  Requirement:          35.000ns
+  Data Path Delay:      11.762ns (Levels of Logic = 4)
+  Clock Path Skew:      0.000ns
+  Source Clock:         clk rising at 0.000ns
+  Destination Clock:    clk rising at 35.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: fpga_inst/FSM/state_act_FSM_FFd4 to fpga_inst/FSM/vector_map_init_42
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X14Y10.YQ      Tcko                  0.720   fpga_inst/FSM/state_act_FSM_FFd4
+                                                       fpga_inst/FSM/state_act_FSM_FFd4
+    SLICE_X17Y14.G2      net (fanout=10)       1.304   fpga_inst/FSM/state_act_FSM_FFd4
+    SLICE_X17Y14.Y       Tilo                  0.551   fpga_inst/FSM/RESET_SLOUPEC_mux00014
+                                                       fpga_inst/FSM/vector_map_init_0_mux000111
+    SLICE_X10Y9.G1       net (fanout=17)       1.544   fpga_inst/FSM/N3
+    SLICE_X10Y9.Y        Tilo                  0.608   fpga_inst/FSM/vector_map_init_87_mux00014
+                                                       fpga_inst/FSM/vector_map_init_25_mux000111_1
+    SLICE_X2Y14.G2       net (fanout=16)       3.311   fpga_inst/FSM/vector_map_init_25_mux000111
+    SLICE_X2Y14.Y        Tilo                  0.608   fpga_inst/FSM/vector_map_init_42_mux00017
+                                                       fpga_inst/FSM/vector_map_init_42_mux00014
+    SLICE_X2Y14.F4       net (fanout=1)        0.015   fpga_inst/FSM/vector_map_init_42_mux00014/O
+    SLICE_X2Y14.X        Tilo                  0.608   fpga_inst/FSM/vector_map_init_42_mux00017
+                                                       fpga_inst/FSM/vector_map_init_42_mux00017
+    SLICE_X3Y15.SR       net (fanout=1)        1.467   fpga_inst/FSM/vector_map_init_42_mux00017
+    SLICE_X3Y15.CLK      Tsrck                 1.026   fpga_inst/FSM/vector_map_init<42>
+                                                       fpga_inst/FSM/vector_map_init_42
+    -------------------------------------------------  ---------------------------
+    Total                                     11.762ns (4.121ns logic, 7.641ns route)
+                                                       (35.0% logic, 65.0% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     23.484ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               fpga_inst/FSM/state_act_FSM_FFd3 (FF)
+  Destination:          fpga_inst/FSM/vector_map_init_42 (FF)
+  Requirement:          35.000ns
+  Data Path Delay:      11.516ns (Levels of Logic = 4)
+  Clock Path Skew:      0.000ns
+  Source Clock:         clk rising at 0.000ns
+  Destination Clock:    clk rising at 35.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: fpga_inst/FSM/state_act_FSM_FFd3 to fpga_inst/FSM/vector_map_init_42
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X16Y11.YQ      Tcko                  0.720   fpga_inst/FSM/state_act_FSM_FFd3
+                                                       fpga_inst/FSM/state_act_FSM_FFd3
+    SLICE_X17Y14.G1      net (fanout=9)        1.058   fpga_inst/FSM/state_act_FSM_FFd3
+    SLICE_X17Y14.Y       Tilo                  0.551   fpga_inst/FSM/RESET_SLOUPEC_mux00014
+                                                       fpga_inst/FSM/vector_map_init_0_mux000111
+    SLICE_X10Y9.G1       net (fanout=17)       1.544   fpga_inst/FSM/N3
+    SLICE_X10Y9.Y        Tilo                  0.608   fpga_inst/FSM/vector_map_init_87_mux00014
+                                                       fpga_inst/FSM/vector_map_init_25_mux000111_1
+    SLICE_X2Y14.G2       net (fanout=16)       3.311   fpga_inst/FSM/vector_map_init_25_mux000111
+    SLICE_X2Y14.Y        Tilo                  0.608   fpga_inst/FSM/vector_map_init_42_mux00017
+                                                       fpga_inst/FSM/vector_map_init_42_mux00014
+    SLICE_X2Y14.F4       net (fanout=1)        0.015   fpga_inst/FSM/vector_map_init_42_mux00014/O
+    SLICE_X2Y14.X        Tilo                  0.608   fpga_inst/FSM/vector_map_init_42_mux00017
+                                                       fpga_inst/FSM/vector_map_init_42_mux00017
+    SLICE_X3Y15.SR       net (fanout=1)        1.467   fpga_inst/FSM/vector_map_init_42_mux00017
+    SLICE_X3Y15.CLK      Tsrck                 1.026   fpga_inst/FSM/vector_map_init<42>
+                                                       fpga_inst/FSM/vector_map_init_42
+    -------------------------------------------------  ---------------------------
+    Total                                     11.516ns (4.121ns logic, 7.395ns route)
+                                                       (35.8% logic, 64.2% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     24.020ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               fpga_inst/FSM/move_en (FF)
+  Destination:          fpga_inst/FSM/vector_map_init_42 (FF)
+  Requirement:          35.000ns
+  Data Path Delay:      10.980ns (Levels of Logic = 4)
+  Clock Path Skew:      0.000ns
+  Source Clock:         clk rising at 0.000ns
+  Destination Clock:    clk rising at 35.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: fpga_inst/FSM/move_en to fpga_inst/FSM/vector_map_init_42
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X18Y14.YQ      Tcko                  0.720   fpga_inst/FSM/move_en
+                                                       fpga_inst/FSM/move_en
+    SLICE_X17Y14.G3      net (fanout=10)       0.522   fpga_inst/FSM/move_en
+    SLICE_X17Y14.Y       Tilo                  0.551   fpga_inst/FSM/RESET_SLOUPEC_mux00014
+                                                       fpga_inst/FSM/vector_map_init_0_mux000111
+    SLICE_X10Y9.G1       net (fanout=17)       1.544   fpga_inst/FSM/N3
+    SLICE_X10Y9.Y        Tilo                  0.608   fpga_inst/FSM/vector_map_init_87_mux00014
+                                                       fpga_inst/FSM/vector_map_init_25_mux000111_1
+    SLICE_X2Y14.G2       net (fanout=16)       3.311   fpga_inst/FSM/vector_map_init_25_mux000111
+    SLICE_X2Y14.Y        Tilo                  0.608   fpga_inst/FSM/vector_map_init_42_mux00017
+                                                       fpga_inst/FSM/vector_map_init_42_mux00014
+    SLICE_X2Y14.F4       net (fanout=1)        0.015   fpga_inst/FSM/vector_map_init_42_mux00014/O
+    SLICE_X2Y14.X        Tilo                  0.608   fpga_inst/FSM/vector_map_init_42_mux00017
+                                                       fpga_inst/FSM/vector_map_init_42_mux00017
+    SLICE_X3Y15.SR       net (fanout=1)        1.467   fpga_inst/FSM/vector_map_init_42_mux00017
+    SLICE_X3Y15.CLK      Tsrck                 1.026   fpga_inst/FSM/vector_map_init<42>
+                                                       fpga_inst/FSM/vector_map_init_42
+    -------------------------------------------------  ---------------------------
+    Total                                     10.980ns (4.121ns logic, 6.859ns route)
+                                                       (37.5% logic, 62.5% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point fpga_inst/FSM/vector_map_init_50 (SLICE_X2Y11.SR), 24 paths
+--------------------------------------------------------------------------------
+Slack (setup path):     23.543ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               fpga_inst/FSM/state_act_FSM_FFd4 (FF)
+  Destination:          fpga_inst/FSM/vector_map_init_50 (FF)
+  Requirement:          35.000ns
+  Data Path Delay:      11.457ns (Levels of Logic = 4)
+  Clock Path Skew:      0.000ns
+  Source Clock:         clk rising at 0.000ns
+  Destination Clock:    clk rising at 35.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: fpga_inst/FSM/state_act_FSM_FFd4 to fpga_inst/FSM/vector_map_init_50
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X14Y10.YQ      Tcko                  0.720   fpga_inst/FSM/state_act_FSM_FFd4
+                                                       fpga_inst/FSM/state_act_FSM_FFd4
+    SLICE_X17Y14.G2      net (fanout=10)       1.304   fpga_inst/FSM/state_act_FSM_FFd4
+    SLICE_X17Y14.Y       Tilo                  0.551   fpga_inst/FSM/RESET_SLOUPEC_mux00014
+                                                       fpga_inst/FSM/vector_map_init_0_mux000111
+    SLICE_X10Y9.G1       net (fanout=17)       1.544   fpga_inst/FSM/N3
+    SLICE_X10Y9.Y        Tilo                  0.608   fpga_inst/FSM/vector_map_init_87_mux00014
+                                                       fpga_inst/FSM/vector_map_init_25_mux000111_1
+    SLICE_X2Y10.G2       net (fanout=16)       3.646   fpga_inst/FSM/vector_map_init_25_mux000111
+    SLICE_X2Y10.Y        Tilo                  0.608   fpga_inst/FSM/vector_map_init_50_mux00017
+                                                       fpga_inst/FSM/vector_map_init_50_mux00014
+    SLICE_X2Y10.F4       net (fanout=1)        0.015   fpga_inst/FSM/vector_map_init_50_mux00014/O
+    SLICE_X2Y10.X        Tilo                  0.608   fpga_inst/FSM/vector_map_init_50_mux00017
+                                                       fpga_inst/FSM/vector_map_init_50_mux00017
+    SLICE_X2Y11.SR       net (fanout=1)        0.827   fpga_inst/FSM/vector_map_init_50_mux00017
+    SLICE_X2Y11.CLK      Tsrck                 1.026   fpga_inst/FSM/vector_map_init<50>
+                                                       fpga_inst/FSM/vector_map_init_50
+    -------------------------------------------------  ---------------------------
+    Total                                     11.457ns (4.121ns logic, 7.336ns route)
+                                                       (36.0% logic, 64.0% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     23.789ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               fpga_inst/FSM/state_act_FSM_FFd3 (FF)
+  Destination:          fpga_inst/FSM/vector_map_init_50 (FF)
+  Requirement:          35.000ns
+  Data Path Delay:      11.211ns (Levels of Logic = 4)
+  Clock Path Skew:      0.000ns
+  Source Clock:         clk rising at 0.000ns
+  Destination Clock:    clk rising at 35.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: fpga_inst/FSM/state_act_FSM_FFd3 to fpga_inst/FSM/vector_map_init_50
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X16Y11.YQ      Tcko                  0.720   fpga_inst/FSM/state_act_FSM_FFd3
+                                                       fpga_inst/FSM/state_act_FSM_FFd3
+    SLICE_X17Y14.G1      net (fanout=9)        1.058   fpga_inst/FSM/state_act_FSM_FFd3
+    SLICE_X17Y14.Y       Tilo                  0.551   fpga_inst/FSM/RESET_SLOUPEC_mux00014
+                                                       fpga_inst/FSM/vector_map_init_0_mux000111
+    SLICE_X10Y9.G1       net (fanout=17)       1.544   fpga_inst/FSM/N3
+    SLICE_X10Y9.Y        Tilo                  0.608   fpga_inst/FSM/vector_map_init_87_mux00014
+                                                       fpga_inst/FSM/vector_map_init_25_mux000111_1
+    SLICE_X2Y10.G2       net (fanout=16)       3.646   fpga_inst/FSM/vector_map_init_25_mux000111
+    SLICE_X2Y10.Y        Tilo                  0.608   fpga_inst/FSM/vector_map_init_50_mux00017
+                                                       fpga_inst/FSM/vector_map_init_50_mux00014
+    SLICE_X2Y10.F4       net (fanout=1)        0.015   fpga_inst/FSM/vector_map_init_50_mux00014/O
+    SLICE_X2Y10.X        Tilo                  0.608   fpga_inst/FSM/vector_map_init_50_mux00017
+                                                       fpga_inst/FSM/vector_map_init_50_mux00017
+    SLICE_X2Y11.SR       net (fanout=1)        0.827   fpga_inst/FSM/vector_map_init_50_mux00017
+    SLICE_X2Y11.CLK      Tsrck                 1.026   fpga_inst/FSM/vector_map_init<50>
+                                                       fpga_inst/FSM/vector_map_init_50
+    -------------------------------------------------  ---------------------------
+    Total                                     11.211ns (4.121ns logic, 7.090ns route)
+                                                       (36.8% logic, 63.2% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     24.325ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               fpga_inst/FSM/move_en (FF)
+  Destination:          fpga_inst/FSM/vector_map_init_50 (FF)
+  Requirement:          35.000ns
+  Data Path Delay:      10.675ns (Levels of Logic = 4)
+  Clock Path Skew:      0.000ns
+  Source Clock:         clk rising at 0.000ns
+  Destination Clock:    clk rising at 35.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: fpga_inst/FSM/move_en to fpga_inst/FSM/vector_map_init_50
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X18Y14.YQ      Tcko                  0.720   fpga_inst/FSM/move_en
+                                                       fpga_inst/FSM/move_en
+    SLICE_X17Y14.G3      net (fanout=10)       0.522   fpga_inst/FSM/move_en
+    SLICE_X17Y14.Y       Tilo                  0.551   fpga_inst/FSM/RESET_SLOUPEC_mux00014
+                                                       fpga_inst/FSM/vector_map_init_0_mux000111
+    SLICE_X10Y9.G1       net (fanout=17)       1.544   fpga_inst/FSM/N3
+    SLICE_X10Y9.Y        Tilo                  0.608   fpga_inst/FSM/vector_map_init_87_mux00014
+                                                       fpga_inst/FSM/vector_map_init_25_mux000111_1
+    SLICE_X2Y10.G2       net (fanout=16)       3.646   fpga_inst/FSM/vector_map_init_25_mux000111
+    SLICE_X2Y10.Y        Tilo                  0.608   fpga_inst/FSM/vector_map_init_50_mux00017
+                                                       fpga_inst/FSM/vector_map_init_50_mux00014
+    SLICE_X2Y10.F4       net (fanout=1)        0.015   fpga_inst/FSM/vector_map_init_50_mux00014/O
+    SLICE_X2Y10.X        Tilo                  0.608   fpga_inst/FSM/vector_map_init_50_mux00017
+                                                       fpga_inst/FSM/vector_map_init_50_mux00017
+    SLICE_X2Y11.SR       net (fanout=1)        0.827   fpga_inst/FSM/vector_map_init_50_mux00017
+    SLICE_X2Y11.CLK      Tsrck                 1.026   fpga_inst/FSM/vector_map_init<50>
+                                                       fpga_inst/FSM/vector_map_init_50
+    -------------------------------------------------  ---------------------------
+    Total                                     10.675ns (4.121ns logic, 6.554ns route)
+                                                       (38.6% logic, 61.4% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point fpga_inst/FSM/vector_map_init_26 (SLICE_X0Y7.SR), 24 paths
+--------------------------------------------------------------------------------
+Slack (setup path):     23.834ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               fpga_inst/FSM/state_act_FSM_FFd4 (FF)
+  Destination:          fpga_inst/FSM/vector_map_init_26 (FF)
+  Requirement:          35.000ns
+  Data Path Delay:      11.166ns (Levels of Logic = 4)
+  Clock Path Skew:      0.000ns
+  Source Clock:         clk rising at 0.000ns
+  Destination Clock:    clk rising at 35.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: fpga_inst/FSM/state_act_FSM_FFd4 to fpga_inst/FSM/vector_map_init_26
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X14Y10.YQ      Tcko                  0.720   fpga_inst/FSM/state_act_FSM_FFd4
+                                                       fpga_inst/FSM/state_act_FSM_FFd4
+    SLICE_X17Y14.G2      net (fanout=10)       1.304   fpga_inst/FSM/state_act_FSM_FFd4
+    SLICE_X17Y14.Y       Tilo                  0.551   fpga_inst/FSM/RESET_SLOUPEC_mux00014
+                                                       fpga_inst/FSM/vector_map_init_0_mux000111
+    SLICE_X13Y21.G2      net (fanout=17)       1.738   fpga_inst/FSM/N3
+    SLICE_X13Y21.Y       Tilo                  0.551   fpga_inst/FSM/vector_map_init_43_mux00014
+                                                       fpga_inst/FSM/vector_map_init_25_mux000111_5
+    SLICE_X0Y6.G3        net (fanout=18)       2.860   fpga_inst/FSM/vector_map_init_25_mux000111_4
+    SLICE_X0Y6.Y         Tilo                  0.608   fpga_inst/FSM/vector_map_init_26_mux00017
+                                                       fpga_inst/FSM/vector_map_init_26_mux00014
+    SLICE_X0Y6.F4        net (fanout=1)        0.015   fpga_inst/FSM/vector_map_init_26_mux00014/O
+    SLICE_X0Y6.X         Tilo                  0.608   fpga_inst/FSM/vector_map_init_26_mux00017
+                                                       fpga_inst/FSM/vector_map_init_26_mux00017
+    SLICE_X0Y7.SR        net (fanout=1)        1.185   fpga_inst/FSM/vector_map_init_26_mux00017
+    SLICE_X0Y7.CLK       Tsrck                 1.026   fpga_inst/FSM/vector_map_init<26>
+                                                       fpga_inst/FSM/vector_map_init_26
+    -------------------------------------------------  ---------------------------
+    Total                                     11.166ns (4.064ns logic, 7.102ns route)
+                                                       (36.4% logic, 63.6% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     24.080ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               fpga_inst/FSM/state_act_FSM_FFd3 (FF)
+  Destination:          fpga_inst/FSM/vector_map_init_26 (FF)
+  Requirement:          35.000ns
+  Data Path Delay:      10.920ns (Levels of Logic = 4)
+  Clock Path Skew:      0.000ns
+  Source Clock:         clk rising at 0.000ns
+  Destination Clock:    clk rising at 35.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: fpga_inst/FSM/state_act_FSM_FFd3 to fpga_inst/FSM/vector_map_init_26
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X16Y11.YQ      Tcko                  0.720   fpga_inst/FSM/state_act_FSM_FFd3
+                                                       fpga_inst/FSM/state_act_FSM_FFd3
+    SLICE_X17Y14.G1      net (fanout=9)        1.058   fpga_inst/FSM/state_act_FSM_FFd3
+    SLICE_X17Y14.Y       Tilo                  0.551   fpga_inst/FSM/RESET_SLOUPEC_mux00014
+                                                       fpga_inst/FSM/vector_map_init_0_mux000111
+    SLICE_X13Y21.G2      net (fanout=17)       1.738   fpga_inst/FSM/N3
+    SLICE_X13Y21.Y       Tilo                  0.551   fpga_inst/FSM/vector_map_init_43_mux00014
+                                                       fpga_inst/FSM/vector_map_init_25_mux000111_5
+    SLICE_X0Y6.G3        net (fanout=18)       2.860   fpga_inst/FSM/vector_map_init_25_mux000111_4
+    SLICE_X0Y6.Y         Tilo                  0.608   fpga_inst/FSM/vector_map_init_26_mux00017
+                                                       fpga_inst/FSM/vector_map_init_26_mux00014
+    SLICE_X0Y6.F4        net (fanout=1)        0.015   fpga_inst/FSM/vector_map_init_26_mux00014/O
+    SLICE_X0Y6.X         Tilo                  0.608   fpga_inst/FSM/vector_map_init_26_mux00017
+                                                       fpga_inst/FSM/vector_map_init_26_mux00017
+    SLICE_X0Y7.SR        net (fanout=1)        1.185   fpga_inst/FSM/vector_map_init_26_mux00017
+    SLICE_X0Y7.CLK       Tsrck                 1.026   fpga_inst/FSM/vector_map_init<26>
+                                                       fpga_inst/FSM/vector_map_init_26
+    -------------------------------------------------  ---------------------------
+    Total                                     10.920ns (4.064ns logic, 6.856ns route)
+                                                       (37.2% logic, 62.8% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     24.596ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               fpga_inst/FSM/move_en (FF)
+  Destination:          fpga_inst/FSM/vector_map_init_26 (FF)
+  Requirement:          35.000ns
+  Data Path Delay:      10.384ns (Levels of Logic = 4)
+  Clock Path Skew:      -0.020ns (0.517 - 0.537)
+  Source Clock:         clk rising at 0.000ns
+  Destination Clock:    clk rising at 35.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: fpga_inst/FSM/move_en to fpga_inst/FSM/vector_map_init_26
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X18Y14.YQ      Tcko                  0.720   fpga_inst/FSM/move_en
+                                                       fpga_inst/FSM/move_en
+    SLICE_X17Y14.G3      net (fanout=10)       0.522   fpga_inst/FSM/move_en
+    SLICE_X17Y14.Y       Tilo                  0.551   fpga_inst/FSM/RESET_SLOUPEC_mux00014
+                                                       fpga_inst/FSM/vector_map_init_0_mux000111
+    SLICE_X13Y21.G2      net (fanout=17)       1.738   fpga_inst/FSM/N3
+    SLICE_X13Y21.Y       Tilo                  0.551   fpga_inst/FSM/vector_map_init_43_mux00014
+                                                       fpga_inst/FSM/vector_map_init_25_mux000111_5
+    SLICE_X0Y6.G3        net (fanout=18)       2.860   fpga_inst/FSM/vector_map_init_25_mux000111_4
+    SLICE_X0Y6.Y         Tilo                  0.608   fpga_inst/FSM/vector_map_init_26_mux00017
+                                                       fpga_inst/FSM/vector_map_init_26_mux00014
+    SLICE_X0Y6.F4        net (fanout=1)        0.015   fpga_inst/FSM/vector_map_init_26_mux00014/O
+    SLICE_X0Y6.X         Tilo                  0.608   fpga_inst/FSM/vector_map_init_26_mux00017
+                                                       fpga_inst/FSM/vector_map_init_26_mux00017
+    SLICE_X0Y7.SR        net (fanout=1)        1.185   fpga_inst/FSM/vector_map_init_26_mux00017
+    SLICE_X0Y7.CLK       Tsrck                 1.026   fpga_inst/FSM/vector_map_init<26>
+                                                       fpga_inst/FSM/vector_map_init_26
+    -------------------------------------------------  ---------------------------
+    Total                                     10.384ns (4.064ns logic, 6.320ns route)
+                                                       (39.1% logic, 60.9% route)
+
+--------------------------------------------------------------------------------
+
+Hold Paths: PERIOD analysis for net "DCMclkgen/CLKFX_BUF" derived from
+ NET "smclk_x1" PERIOD = 125 ns HIGH 50%;
+ divided by 3.57 to 35 nS and duty cycle corrected to HIGH 17.500 nS 
+
+--------------------------------------------------------------------------------
+
+Paths for end point fpga_inst/FSM/counter_to_48/cnt_0 (SLICE_X23Y18.BX), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      0.826ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               fpga_inst/FSM/counter_to_48/cnt_0 (FF)
+  Destination:          fpga_inst/FSM/counter_to_48/cnt_0 (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      0.826ns (Levels of Logic = 0)
+  Clock Path Skew:      0.000ns
+  Source Clock:         clk rising at 35.000ns
+  Destination Clock:    clk rising at 35.000ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path: fpga_inst/FSM/counter_to_48/cnt_0 to fpga_inst/FSM/counter_to_48/cnt_0
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X23Y18.XQ      Tcko                  0.576   fpga_inst/FSM/counter_to_48/cnt<0>
+                                                       fpga_inst/FSM/counter_to_48/cnt_0
+    SLICE_X23Y18.BX      net (fanout=5)        0.533   fpga_inst/FSM/counter_to_48/cnt<0>
+    SLICE_X23Y18.CLK     Tckdi       (-Th)     0.283   fpga_inst/FSM/counter_to_48/cnt<0>
+                                                       fpga_inst/FSM/counter_to_48/cnt_0
+    -------------------------------------------------  ---------------------------
+    Total                                      0.826ns (0.293ns logic, 0.533ns route)
+                                                       (35.5% logic, 64.5% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point fpga_inst/FSM/counter3/counter_0 (SLICE_X18Y3.BX), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      0.855ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               fpga_inst/FSM/counter3/counter_0 (FF)
+  Destination:          fpga_inst/FSM/counter3/counter_0 (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      0.855ns (Levels of Logic = 0)
+  Clock Path Skew:      0.000ns
+  Source Clock:         clk rising at 35.000ns
+  Destination Clock:    clk rising at 35.000ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path: fpga_inst/FSM/counter3/counter_0 to fpga_inst/FSM/counter3/counter_0
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X18Y3.XQ       Tcko                  0.576   fpga_inst/FSM/counter3/counter<0>
+                                                       fpga_inst/FSM/counter3/counter_0
+    SLICE_X18Y3.BX       net (fanout=5)        0.562   fpga_inst/FSM/counter3/counter<0>
+    SLICE_X18Y3.CLK      Tckdi       (-Th)     0.283   fpga_inst/FSM/counter3/counter<0>
+                                                       fpga_inst/FSM/counter3/counter_0
+    -------------------------------------------------  ---------------------------
+    Total                                      0.855ns (0.293ns logic, 0.562ns route)
+                                                       (34.3% logic, 65.7% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point fpga_inst/FSM/state_act_FSM_FFd3 (SLICE_X16Y11.BY), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      0.914ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               fpga_inst/FSM/state_act_FSM_FFd4 (FF)
+  Destination:          fpga_inst/FSM/state_act_FSM_FFd3 (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      0.911ns (Levels of Logic = 0)
+  Clock Path Skew:      -0.003ns (0.196 - 0.199)
+  Source Clock:         clk rising at 35.000ns
+  Destination Clock:    clk rising at 35.000ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path: fpga_inst/FSM/state_act_FSM_FFd4 to fpga_inst/FSM/state_act_FSM_FFd3
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X14Y10.YQ      Tcko                  0.576   fpga_inst/FSM/state_act_FSM_FFd4
+                                                       fpga_inst/FSM/state_act_FSM_FFd4
+    SLICE_X16Y11.BY      net (fanout=10)       0.572   fpga_inst/FSM/state_act_FSM_FFd4
+    SLICE_X16Y11.CLK     Tckdi       (-Th)     0.237   fpga_inst/FSM/state_act_FSM_FFd3
+                                                       fpga_inst/FSM/state_act_FSM_FFd3
+    -------------------------------------------------  ---------------------------
+    Total                                      0.911ns (0.339ns logic, 0.572ns route)
+                                                       (37.2% logic, 62.8% route)
+
+--------------------------------------------------------------------------------
+
+Component Switching Limit Checks: PERIOD analysis for net "DCMclkgen/CLKFX_BUF" derived from
+ NET "smclk_x1" PERIOD = 125 ns HIGH 50%;
+ divided by 3.57 to 35 nS and duty cycle corrected to HIGH 17.500 nS 
+
+--------------------------------------------------------------------------------
+Slack: 20.557ns (max period limit - period)
+  Period: 35.000ns
+  Max period limit: 55.557ns (18.000MHz) (Tdcmpfx)
+  Physical resource: DCMclkgen/DCM_INST/CLKFX
+  Logical resource: DCMclkgen/DCM_INST/CLKFX
+  Location pin: DCM_X0Y0.CLKFX
+  Clock network: DCMclkgen/CLKFX_BUF
+--------------------------------------------------------------------------------
+Slack: 30.239ns (period - min period limit)
+  Period: 35.000ns
+  Min period limit: 4.761ns (210.040MHz) (Tdcmpfx)
+  Physical resource: DCMclkgen/DCM_INST/CLKFX
+  Logical resource: DCMclkgen/DCM_INST/CLKFX
+  Location pin: DCM_X0Y0.CLKFX
+  Clock network: DCMclkgen/CLKFX_BUF
+--------------------------------------------------------------------------------
+Slack: 33.428ns (period - (min low pulse limit / (low pulse / period)))
+  Period: 35.000ns
+  Low pulse: 17.500ns
+  Low pulse limit: 0.786ns (Tcl)
+  Physical resource: fpga_inst/FSM/counter_timer/counter<0>/CLK
+  Logical resource: fpga_inst/FSM/counter_timer/counter_0/CK
+  Location pin: SLICE_X22Y0.CLK
+  Clock network: clk
+--------------------------------------------------------------------------------
+
+
+Derived Constraint Report
+Derived Constraints for smclk_x1
++-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+|                               |   Period    |       Actual Period       |      Timing Errors        |      Paths Analyzed       |
+|           Constraint          | Requirement |-------------+-------------|-------------+-------------|-------------+-------------|
+|                               |             |   Direct    | Derivative  |   Direct    | Derivative  |   Direct    | Derivative  |
++-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+|smclk_x1                       |    125.000ns|     50.000ns|     42.007ns|            0|            0|            0|         8072|
+| DCMclkgen/CLKFX_BUF           |     35.000ns|     11.762ns|          N/A|            0|            0|         8072|            0|
++-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+
+All constraints were met.
+
+
+Data Sheet report:
+-----------------
+All values displayed in nanoseconds (ns)
+
+Clock to Setup on destination clock SMCLK
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+SMCLK          |   11.762|         |         |         |
+---------------+---------+---------+---------+---------+
+
+
+Timing summary:
+---------------
+
+Timing errors: 0  Score: 0  (Setup/Max: 0, Hold: 0)
+
+Constraints cover 8072 paths, 0 nets, and 3768 connections
+
+Design statistics:
+   Minimum period:  50.000ns{1}   (Maximum frequency:  20.000MHz)
+
+
+------------------------------------Footnotes-----------------------------------
+1)  The minimum period statistic assumes all single cycle delays.
+
+Analysis completed Fri May 05 23:29:24 2023 
+--------------------------------------------------------------------------------
+
+Trace Settings:
+-------------------------
+Trace Settings 
+
+Peak Memory Usage: 90 MB
+
+
+

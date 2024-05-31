@@ -1,0 +1,38 @@
+Running: /opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/fuse -intstyle ise -incremental -o /mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/fsm_tb_isim_beh.exe -prj /mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/fsm_tb_beh.prj work.fsm_tb 
+ISim P.20131013 (signature 0xfbc00daa)
+Number of CPUs detected in this system: 12
+Turning on mult-threading, number of parallel sub-compilation jobs: 24 
+Determining compilation order of HDL files
+Parsing VHDL file "/mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/proj_template/effects_pack.vhd" into library work
+Parsing VHDL file "/mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/proj_template/ROM.vhd" into library work
+Parsing VHDL file "/mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/proj_template/column.vhd" into library work
+Parsing VHDL file "/mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/CNT.vhd" into library work
+Parsing VHDL file "/mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/proj_template/FSM.vhd" into library work
+Parsing VHDL file "/mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/fsm_tb.vhd" into library work
+Starting static elaboration
+Completed static elaboration
+Fuse Memory Usage: 86344 KB
+Fuse CPU Usage: 420 ms
+Compiling package standard
+Compiling package std_logic_1164
+Compiling package numeric_std
+Compiling package std_logic_arith
+Compiling package std_logic_unsigned
+Compiling package effects_pack
+Compiling architecture behavioral of entity stlpec [stlpec_default]
+Compiling architecture behavioral of entity CNT [\CNT(6,48)\]
+Compiling architecture behavioral of entity CNT [\CNT(4,9)\]
+Compiling architecture behavioral of entity CNT [\CNT(12,3906)\]
+Compiling architecture behavioral of entity CNT [\CNT(22,4166667)\]
+Compiling architecture behavioral of entity CNT [\CNT(5,16)\]
+Compiling architecture behavioral of entity CNT [\CNT(25,25000000)\]
+Compiling architecture behavioral of entity MEMORY [memory_default]
+Compiling architecture behavioral of entity fsm [fsm_default]
+Compiling architecture behavior of entity fsm_tb
+Time Resolution for simulation is 1ps.
+Waiting for 1 sub-compilation(s) to finish...
+Compiled 25 VHDL Units
+Built simulation executable /mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/fsm_tb_isim_beh.exe
+Fuse Memory Usage: 1713264 KB
+Fuse CPU Usage: 640 ms
+GCC CPU Usage: 2430 ms

@@ -1,0 +1,6 @@
+vhdl isim_temp "ROM.vhd"
+vhdl isim_temp "tlv_gp_ifc.vhd"
+vhdl isim_temp "FSM.vhd"
+vhdl isim_temp "effects_pack.vhd"
+vhdl isim_temp "column.vhd"
+vhdl isim_temp "fpga_inst.vhd"

@@ -1,0 +1,85 @@
+Architektury Výpočetních Systémů (AVS 2023)
+Projekt č. 2 (PMC)
+Login: xduric05
+
+Úloha 1: Paralelizace původního řešení
+===============================================================================
+
+1) Kterou ze smyček (viz zadání) je vhodnější paralelizovat a co způsobuje 
+   neefektivitu paralelizaci té druhé?
+Efektívnejšie je paralizovať vonkajšiu smyčku (tú vo funkcii marchCubes). 
+
+Neefektivita druhej smyčky môže byť spôsobená zvýšenou réžiou pri vytváraní a rušení vlákien. Rovnako môže byť spôsobená aj výrazným zvýšením lineárnej časti programu pri paralizácii len druhej smyčky.
+
+2) Jaké plánování (rozdělení práce mezi vlákna) jste zvolili a proč? 
+   Jaký vliv má velikost "chunk" při dynamickém plánování (8, 16, 32, 64)?
+Zvolil som guided pri veľkosti chunku 64. Porovnával som rýchlosti algoritmu pri rôznych obtiažnostiach výpočtu. Na konci som sa rozhodoval medzi guided 64 a dynamic 64. Zvolené plánovanie bolo kúsok rýchlejšie, ale rozdiel medzi nimi nebol veľmi výrazný.
+
+Pri dynamickom plánovaní veľkosť chunku označuje koľko iterácií smyčky bude pridelených každému vláknu. Keď vlákno dokončí svoju prácu dostane od réžie ďaľšie iterácie v smyčke, ktorých počet bude znova veľkosť chunku. 
+
+3) Jakým způsobem zajišťujete ukládání trojúhelníků z několika vláken současně?
+
+Pomocou critical sekcie v ktorej je funkcia na uloženie trojuholniku a pocet trojuholnikov sa pocita cez redukciu
+
+
+Úloha 2: Paralelní průchod stromem
+===============================================================================
+
+1) Stručně popište použití OpenMP tasků ve vašem řešení.
+Pre každú kocku, ktorá je potomkom nejakej inej kocky, vytváram pri jej vygenerovaní task v ktorom sa rekurzívne vypočítajú všetky prípadné následné potomky alebo sa vygenerujú trojuholníky.
+
+2) Jaký vliv má na vaše řešení tzv. "cut-off"? Je vhodné vytvářet nový 
+   task pro každou krychli na nejnižší úrovni?
+V mojom riešení kontrolujem prázdnosť alebo cut-off momentálnej kocky predtým ako vygenerujem jej potomkov. Takže ak je práve kontrolovaná kocka na najnižšej úrovni tak už nebudem generovať nových potomkov a rovno vygenerujem trojuholníky v momentálnej kocke.
+
+Aj pre kocky na najnižsej úrovni je potrebné skontrolovať prázdnosť kocky. Dalo by sa to kontrolovať pred vygenerovaním kocky a následne generovať len kocky, ktoré nie sú prázdne, ale moje riešenie toto nerobí a nemyslím si že to je potrebné, kvôli zvýšeniu lineárnej časti programu.
+
+3) Jakým způsobem zajišťujete ukládání trojúhelníků z několika vláken současně?
+Podobne ako pri loop builderi pomocou critical sekcie v ktorej je funkcia na ulozenie trojuholniku. Počet trojuholníkov v rámci tasku sa updatuje atomicky z každého potomka. Po spočitaní potomkov sa celkový počet trojuholníkov returne do otcovskej kocky.
+
+
+Úloha 3: Grafy škálování všech řešení
+===============================================================================
+
+1) Stručně zhodnoťte efektivitu vytvořených řešení (na základě grafů ŠKÁLOVÁNÍ).
+Octree je výrazne efektívejší od loopu pri nižšom počte jadier, ale pri zvyšovaní počtu jadier sa implementácie vyrovnajú v efektivite.
+
+2) V jakém případě (v závislosti na počtu bodů ve vstupním souboru a velikosti mřížky) bude vaše řešení 1. úlohy neefektivní? (pokud takový případ existuje)
+Loop implementácia bude neefektívna pri nízkom počte bodov a vysokej veľkosti mriežky, pretože réžia vytvárania a rušenia vlákien bude náročenejšia ako samotné vypočítanie problému na jednom vlákne.
+
+3) Je (nebo není) stromový algoritmus efektivnější z pohledu slabého škálování vzhledem ke vstupu?
+Nie, nieje efektívnejší vzhľabom ku vstupu.
+
+4) Jaký je rozdíl mezi silným a slabým škálováním?
+Pri silnom škálování je stabilná veľkosť vstupu, ktorá se nemení pri pridávaní nových vlákien. Graf času by mal teda ideálne klesať vždy na polovicu po zdvojnásobení vlákien.
+
+Pri slabom škálování sa zvyšuje vstup podľa počtu vlákien. Preto by mal graf času ideálne udržiavať rovnú čiaru.
+
+
+Úloha 4: Analýza využití jader pomocí VTune
+================================================================================
+
+1) Jaké bylo průměrné využití jader pro všechny tři implementace s omezením na 
+   18 vláken? Na kolik procent byly využity?
+   
+   ref: 0.997 5.54%
+   loop: 17.446 96.92%
+   tree: 15.549 86.38%
+
+2) Jaké bylo průměrné využití jader pro všechny tři implementace s využitím 
+   všech jader? Na kolik procent se podařilo využít obě CPU?
+   
+   ref: 0.998 2.8%
+   loop: 32.996 91,7%
+   tree: 25.239 70,1%
+
+3) Jaké jsou závěry z těchto měření?
+Loop implementácia lepšie využíva všetky jadrá procesora, ale kedže častokrát počíta zbytočné kocky v ktorých sa nenachádzajú žiadne body modelu, tak nemusí dosahovať vždy najlepší čas.
+
+Octree implementácia horšie využíva jadrá CPU, kedže vlákna často čakajú na výsledky potomkov. Avšak kedže implementácia vie odfiltrovať nepotrebné kocky tak dokáže byť rýchlejšia ako loop implementácia.
+
+Ref implementácia využíva len 1 vlákno kedže je to lineárne riešenie bez použitia OpenMP pragiem
+
+Zníženie pomeru využitia vlákien môže byť aj tým že node na barbore má 2 procesory po 18 vlákien a tak pri využití vlákien na oboch procesoroch nastáva spomalenie kvôli réžii medzi procesormi
+
+

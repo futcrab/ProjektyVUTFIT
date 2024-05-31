@@ -1,0 +1,5 @@
+set -tmpdir "/mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/xst/projnav.tmp"
+set -xsthdpdir "/mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/xst"
+elaborate
+-ifn CNT.prj
+-ifmt mixed

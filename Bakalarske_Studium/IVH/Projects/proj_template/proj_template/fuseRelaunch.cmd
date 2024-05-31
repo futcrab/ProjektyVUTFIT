@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -o "Z:/proj_template/FSM_tb_isim_beh.exe" -prj "Z:/proj_template/FSM_tb_beh.prj" "work.FSM_tb" 

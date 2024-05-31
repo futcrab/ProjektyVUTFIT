@@ -1,0 +1,8 @@
+INTSTYLE=ise
+INFILE=Z:\proj_template\fpga.ncd
+OUTFILE=Z:\proj_template\fpga.bit
+FAMILY=Spartan3
+PART=xc3s50-4pq208
+WORKINGDIR=Z:\proj_template
+LICENSE=WebPack
+USER_INFO=174678435_1777548761_210713447_024

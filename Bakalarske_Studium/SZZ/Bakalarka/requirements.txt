@@ -1,0 +1,6 @@
+glfw
+pyopengl
+pyrr
+numpy
+imgui[glfw]
+tk

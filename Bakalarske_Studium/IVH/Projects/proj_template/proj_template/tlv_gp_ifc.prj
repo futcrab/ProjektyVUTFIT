@@ -1,0 +1,6 @@
+vhdl work "ROM.vhd"
+vhdl work "tlv_gp_ifc.vhd"
+vhdl work "FSM.vhd"
+vhdl work "effects_pack.vhd"
+vhdl work "column.vhd"
+vhdl work "fpga_inst.vhd"

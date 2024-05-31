@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -o "/mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/IVH_Projekt1/counter_tb_isim_beh.exe" -prj "/mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/IVH_Projekt1/counter_tb_beh.prj" "work.counter_tb" 

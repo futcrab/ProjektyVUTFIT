@@ -1,0 +1,1295 @@
+--------------------------------------------------------------------------------
+Release 14.7 Trace  (lin64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+/opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/trce -intstyle ise -v 3 -s 4 -n
+3 -fastpaths -xml fpga.twx fpga.ncd -o fpga.twr fpga.pcf -ucf fpga_fitkit.ucf
+
+Design file:              fpga.ncd
+Physical constraint file: fpga.pcf
+Device,package,speed:     xc3s50,pq208,-4 (PRODUCTION 1.39 2013-10-13)
+Report level:             verbose report
+
+Environment Variable      Effect 
+--------------------      ------ 
+NONE                      No environment variables were set
+--------------------------------------------------------------------------------
+
+INFO:Timing:3412 - To improve timing, see the Timing Closure User Guide (UG612).
+INFO:Timing:2752 - To get complete path coverage, use the unconstrained paths 
+   option. All paths that are not constrained will be reported in the 
+   unconstrained paths section(s) of the report.
+INFO:Timing:3339 - The clock-to-out numbers in this timing report are based on 
+   a 50 Ohm transmission line loading model.  For the details of this model, 
+   and for more information on accounting for different loading conditions, 
+   please see the device datasheet.
+INFO:Timing:3390 - This architecture does not support a default System Jitter 
+   value, please add SYSTEM_JITTER constraint to the UCF to modify the Clock 
+   Uncertainty calculation.
+INFO:Timing:3389 - This architecture does not support 'Discrete Jitter' and 
+   'Phase Error' calculations, these terms will be zero in the Clock 
+   Uncertainty calculation.  Please make appropriate modification to 
+   SYSTEM_JITTER to account for the unsupported Discrete Jitter and Phase 
+   Error.
+
+================================================================================
+Timing constraint: NET "smclk_x1" PERIOD = 125 ns HIGH 50%;
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 0 paths analyzed, 0 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 component switching limit errors)
+ Minimum period is  50.000ns.
+--------------------------------------------------------------------------------
+
+Component Switching Limit Checks: NET "smclk_x1" PERIOD = 125 ns HIGH 50%;
+--------------------------------------------------------------------------------
+Slack: 75.000ns (period - (min low pulse limit / (low pulse / period)))
+  Period: 125.000ns
+  Low pulse: 62.500ns
+  Low pulse limit: 25.000ns (Tdcmpw_CLKIN_1_10)
+  Physical resource: DCMclkgen/DCM_INST/CLKIN
+  Logical resource: DCMclkgen/DCM_INST/CLKIN
+  Location pin: DCM_X0Y0.CLKIN
+  Clock network: smclk_x1
+--------------------------------------------------------------------------------
+Slack: 75.000ns (period - (min high pulse limit / (high pulse / period)))
+  Period: 125.000ns
+  High pulse: 62.500ns
+  High pulse limit: 25.000ns (Tdcmpw_CLKIN_1_10)
+  Physical resource: DCMclkgen/DCM_INST/CLKIN
+  Logical resource: DCMclkgen/DCM_INST/CLKIN
+  Location pin: DCM_X0Y0.CLKIN
+  Clock network: smclk_x1
+--------------------------------------------------------------------------------
+Slack: 121.430ns (period - min period limit)
+  Period: 125.000ns
+  Min period limit: 3.570ns (280.112MHz) (Tdcmpc)
+  Physical resource: DCMclkgen/DCM_INST/CLKIN
+  Logical resource: DCMclkgen/DCM_INST/CLKIN
+  Location pin: DCM_X0Y0.CLKIN
+  Clock network: smclk_x1
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: PERIOD analysis for net "DCMclkgen/CLKFX_BUF" derived from  
+NET "smclk_x1" PERIOD = 125 ns HIGH 50%;  divided by 3.57 to 35 nS and duty 
+cycle corrected to HIGH 17.500 nS  
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 1984015 paths analyzed, 1637 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors, 0 component switching limit errors)
+ Minimum period is  24.554ns.
+--------------------------------------------------------------------------------
+
+Paths for end point fpga_inst/FSM/DISPLAY_INIT_67 (SLICE_X1Y10.G1), 16504 paths
+--------------------------------------------------------------------------------
+Slack (setup path):     10.446ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               fpga_inst/FSM/DIS_COL_2 (FF)
+  Destination:          fpga_inst/FSM/DISPLAY_INIT_67 (FF)
+  Requirement:          35.000ns
+  Data Path Delay:      24.554ns (Levels of Logic = 25)
+  Clock Path Skew:      0.000ns
+  Source Clock:         clk rising at 0.000ns
+  Destination Clock:    clk rising at 35.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: fpga_inst/FSM/DIS_COL_2 to fpga_inst/FSM/DISPLAY_INIT_67
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X22Y9.XQ       Tcko                  0.720   fpga_inst/FSM/DIS_COL<2>
+                                                       fpga_inst/FSM/DIS_COL_2
+    SLICE_X23Y11.F1      net (fanout=19)       0.581   fpga_inst/FSM/DIS_COL<2>
+    SLICE_X23Y11.COUT    Topcyf                1.027   fpga_inst/FSM/_sub0000<2>
+                                                       fpga_inst/FSM/Msub__sub0000_lut<2>_INV_0
+                                                       fpga_inst/FSM/Msub__sub0000_cy<2>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<3>
+    SLICE_X23Y12.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<3>
+    SLICE_X23Y12.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<4>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<4>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<5>
+    SLICE_X23Y13.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<5>
+    SLICE_X23Y13.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<6>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<6>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<7>
+    SLICE_X23Y14.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<7>
+    SLICE_X23Y14.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<8>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<8>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<9>
+    SLICE_X23Y15.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<9>
+    SLICE_X23Y15.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<10>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<10>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<11>
+    SLICE_X23Y16.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<11>
+    SLICE_X23Y16.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<12>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<12>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<13>
+    SLICE_X23Y17.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<13>
+    SLICE_X23Y17.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<14>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<14>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<15>
+    SLICE_X23Y18.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<15>
+    SLICE_X23Y18.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<16>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<16>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<17>
+    SLICE_X23Y19.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<17>
+    SLICE_X23Y19.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<18>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<18>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<19>
+    SLICE_X23Y20.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<19>
+    SLICE_X23Y20.Y       Tciny                 0.923   fpga_inst/FSM/_sub0000<20>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<20>
+                                                       fpga_inst/FSM/Msub__sub0000_xor<21>
+    SLICE_X20Y16.G4      net (fanout=1)        1.983   fpga_inst/FSM/_sub0000<21>
+    SLICE_X20Y16.COUT    Topcyg                1.096   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<1>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_lut<1>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<1>
+    SLICE_X20Y17.CIN     net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<1>
+    SLICE_X20Y17.COUT    Tbyp                  0.120   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<3>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<2>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<3>
+    SLICE_X20Y18.CIN     net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<3>
+    SLICE_X20Y18.COUT    Tbyp                  0.120   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<5>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<4>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<5>
+    SLICE_X20Y19.CIN     net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<5>
+    SLICE_X20Y19.XB      Tcinxb                0.440   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<6>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<6>
+    SLICE_X21Y0.G2       net (fanout=21)       1.370   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<6>
+    SLICE_X21Y0.Y        Tilo                  0.551   fpga_inst/FSM/DISPLAY_INIT_64_cmp_eq0000
+                                                       fpga_inst/FSM/DISPLAY_INIT_0_cmp_eq000111
+    SLICE_X15Y5.G4       net (fanout=9)        1.602   fpga_inst/FSM/N72
+    SLICE_X15Y5.Y        Tilo                  0.551   fpga_inst/FSM/DISPLAY_INIT_24_and0009
+                                                       fpga_inst/FSM/DISPLAY_INIT_24_cmp_eq00001
+    SLICE_X16Y10.G2      net (fanout=14)       1.551   fpga_inst/FSM/DISPLAY_INIT_24_cmp_eq0000
+    SLICE_X16Y10.Y       Tilo                  0.608   fpga_inst/FSM/DISPLAY_INIT_64_and0006
+                                                       fpga_inst/FSM/DISPLAY_INIT_24_and00111
+    SLICE_X16Y4.G2       net (fanout=3)        0.948   fpga_inst/FSM/DISPLAY_INIT_24_and0011
+    SLICE_X16Y4.COUT     Topcyg                1.096   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<1>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_lut<1>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<1>
+    SLICE_X16Y5.CIN      net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<1>
+    SLICE_X16Y5.COUT     Tbyp                  0.120   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<3>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<2>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<3>
+    SLICE_X16Y6.CIN      net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<3>
+    SLICE_X16Y6.COUT     Tbyp                  0.120   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<5>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<4>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<5>
+    SLICE_X16Y7.CIN      net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<5>
+    SLICE_X16Y7.XB       Tcinxb                0.440   fpga_inst/FSM/DISPLAY_INIT_16_mux0002315
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<6>
+    SLICE_X12Y2.F1       net (fanout=2)        1.359   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<6>
+    SLICE_X12Y2.X        Tilo                  0.608   fpga_inst/FSM/N48
+                                                       fpga_inst/FSM/DISPLAY_INIT_64_or00001138
+    SLICE_X10Y3.G1       net (fanout=2)        0.581   fpga_inst/FSM/N48
+    SLICE_X10Y3.Y        Tilo                  0.608   fpga_inst/FSM/N94
+                                                       fpga_inst/FSM/DISPLAY_INIT_56_mux0002361
+    SLICE_X9Y2.G1        net (fanout=2)        0.678   fpga_inst/FSM/DISPLAY_INIT_56_mux0002361
+    SLICE_X9Y2.Y         Tilo                  0.551   fpga_inst/FSM/DISPLAY_INIT<69>
+                                                       fpga_inst/FSM/DISPLAY_INIT_64_mux00023120
+    SLICE_X1Y10.G1       net (fanout=8)        2.545   fpga_inst/FSM/N93
+    SLICE_X1Y10.CLK      Tgck                  0.633   fpga_inst/FSM/DISPLAY_INIT<67>
+                                                       fpga_inst/FSM/DISPLAY_INIT_67_mux0002211
+                                                       fpga_inst/FSM/DISPLAY_INIT_67
+    -------------------------------------------------  ---------------------------
+    Total                                     24.554ns (11.356ns logic, 13.198ns route)
+                                                       (46.2% logic, 53.8% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     10.456ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               fpga_inst/FSM/DIS_COL_1 (FF)
+  Destination:          fpga_inst/FSM/DISPLAY_INIT_67 (FF)
+  Requirement:          35.000ns
+  Data Path Delay:      24.544ns (Levels of Logic = 26)
+  Clock Path Skew:      0.000ns
+  Source Clock:         clk rising at 0.000ns
+  Destination Clock:    clk rising at 35.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: fpga_inst/FSM/DIS_COL_1 to fpga_inst/FSM/DISPLAY_INIT_67
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X22Y8.YQ       Tcko                  0.720   fpga_inst/FSM/DIS_COL<0>
+                                                       fpga_inst/FSM/DIS_COL_1
+    SLICE_X23Y10.G3      net (fanout=17)       0.431   fpga_inst/FSM/DIS_COL<1>
+    SLICE_X23Y10.COUT    Topcyg                1.039   fpga_inst/FSM/_sub0000<0>
+                                                       fpga_inst/FSM/Msub__sub0000_lut<1>_INV_0
+                                                       fpga_inst/FSM/Msub__sub0000_cy<1>
+    SLICE_X23Y11.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<1>
+    SLICE_X23Y11.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<2>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<2>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<3>
+    SLICE_X23Y12.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<3>
+    SLICE_X23Y12.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<4>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<4>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<5>
+    SLICE_X23Y13.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<5>
+    SLICE_X23Y13.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<6>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<6>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<7>
+    SLICE_X23Y14.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<7>
+    SLICE_X23Y14.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<8>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<8>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<9>
+    SLICE_X23Y15.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<9>
+    SLICE_X23Y15.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<10>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<10>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<11>
+    SLICE_X23Y16.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<11>
+    SLICE_X23Y16.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<12>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<12>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<13>
+    SLICE_X23Y17.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<13>
+    SLICE_X23Y17.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<14>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<14>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<15>
+    SLICE_X23Y18.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<15>
+    SLICE_X23Y18.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<16>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<16>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<17>
+    SLICE_X23Y19.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<17>
+    SLICE_X23Y19.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<18>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<18>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<19>
+    SLICE_X23Y20.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<19>
+    SLICE_X23Y20.Y       Tciny                 0.923   fpga_inst/FSM/_sub0000<20>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<20>
+                                                       fpga_inst/FSM/Msub__sub0000_xor<21>
+    SLICE_X20Y16.G4      net (fanout=1)        1.983   fpga_inst/FSM/_sub0000<21>
+    SLICE_X20Y16.COUT    Topcyg                1.096   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<1>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_lut<1>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<1>
+    SLICE_X20Y17.CIN     net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<1>
+    SLICE_X20Y17.COUT    Tbyp                  0.120   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<3>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<2>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<3>
+    SLICE_X20Y18.CIN     net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<3>
+    SLICE_X20Y18.COUT    Tbyp                  0.120   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<5>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<4>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<5>
+    SLICE_X20Y19.CIN     net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<5>
+    SLICE_X20Y19.XB      Tcinxb                0.440   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<6>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<6>
+    SLICE_X21Y0.G2       net (fanout=21)       1.370   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<6>
+    SLICE_X21Y0.Y        Tilo                  0.551   fpga_inst/FSM/DISPLAY_INIT_64_cmp_eq0000
+                                                       fpga_inst/FSM/DISPLAY_INIT_0_cmp_eq000111
+    SLICE_X15Y5.G4       net (fanout=9)        1.602   fpga_inst/FSM/N72
+    SLICE_X15Y5.Y        Tilo                  0.551   fpga_inst/FSM/DISPLAY_INIT_24_and0009
+                                                       fpga_inst/FSM/DISPLAY_INIT_24_cmp_eq00001
+    SLICE_X16Y10.G2      net (fanout=14)       1.551   fpga_inst/FSM/DISPLAY_INIT_24_cmp_eq0000
+    SLICE_X16Y10.Y       Tilo                  0.608   fpga_inst/FSM/DISPLAY_INIT_64_and0006
+                                                       fpga_inst/FSM/DISPLAY_INIT_24_and00111
+    SLICE_X16Y4.G2       net (fanout=3)        0.948   fpga_inst/FSM/DISPLAY_INIT_24_and0011
+    SLICE_X16Y4.COUT     Topcyg                1.096   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<1>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_lut<1>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<1>
+    SLICE_X16Y5.CIN      net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<1>
+    SLICE_X16Y5.COUT     Tbyp                  0.120   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<3>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<2>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<3>
+    SLICE_X16Y6.CIN      net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<3>
+    SLICE_X16Y6.COUT     Tbyp                  0.120   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<5>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<4>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<5>
+    SLICE_X16Y7.CIN      net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<5>
+    SLICE_X16Y7.XB       Tcinxb                0.440   fpga_inst/FSM/DISPLAY_INIT_16_mux0002315
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<6>
+    SLICE_X12Y2.F1       net (fanout=2)        1.359   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<6>
+    SLICE_X12Y2.X        Tilo                  0.608   fpga_inst/FSM/N48
+                                                       fpga_inst/FSM/DISPLAY_INIT_64_or00001138
+    SLICE_X10Y3.G1       net (fanout=2)        0.581   fpga_inst/FSM/N48
+    SLICE_X10Y3.Y        Tilo                  0.608   fpga_inst/FSM/N94
+                                                       fpga_inst/FSM/DISPLAY_INIT_56_mux0002361
+    SLICE_X9Y2.G1        net (fanout=2)        0.678   fpga_inst/FSM/DISPLAY_INIT_56_mux0002361
+    SLICE_X9Y2.Y         Tilo                  0.551   fpga_inst/FSM/DISPLAY_INIT<69>
+                                                       fpga_inst/FSM/DISPLAY_INIT_64_mux00023120
+    SLICE_X1Y10.G1       net (fanout=8)        2.545   fpga_inst/FSM/N93
+    SLICE_X1Y10.CLK      Tgck                  0.633   fpga_inst/FSM/DISPLAY_INIT<67>
+                                                       fpga_inst/FSM/DISPLAY_INIT_67_mux0002211
+                                                       fpga_inst/FSM/DISPLAY_INIT_67
+    -------------------------------------------------  ---------------------------
+    Total                                     24.544ns (11.496ns logic, 13.048ns route)
+                                                       (46.8% logic, 53.2% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     10.458ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               fpga_inst/FSM/DIS_COL_3 (FF)
+  Destination:          fpga_inst/FSM/DISPLAY_INIT_67 (FF)
+  Requirement:          35.000ns
+  Data Path Delay:      24.542ns (Levels of Logic = 25)
+  Clock Path Skew:      0.000ns
+  Source Clock:         clk rising at 0.000ns
+  Destination Clock:    clk rising at 35.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: fpga_inst/FSM/DIS_COL_3 to fpga_inst/FSM/DISPLAY_INIT_67
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X22Y9.YQ       Tcko                  0.720   fpga_inst/FSM/DIS_COL<2>
+                                                       fpga_inst/FSM/DIS_COL_3
+    SLICE_X23Y11.G2      net (fanout=19)       0.557   fpga_inst/FSM/DIS_COL<3>
+    SLICE_X23Y11.COUT    Topcyg                1.039   fpga_inst/FSM/_sub0000<2>
+                                                       fpga_inst/FSM/Msub__sub0000_lut<3>_INV_0
+                                                       fpga_inst/FSM/Msub__sub0000_cy<3>
+    SLICE_X23Y12.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<3>
+    SLICE_X23Y12.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<4>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<4>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<5>
+    SLICE_X23Y13.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<5>
+    SLICE_X23Y13.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<6>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<6>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<7>
+    SLICE_X23Y14.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<7>
+    SLICE_X23Y14.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<8>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<8>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<9>
+    SLICE_X23Y15.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<9>
+    SLICE_X23Y15.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<10>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<10>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<11>
+    SLICE_X23Y16.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<11>
+    SLICE_X23Y16.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<12>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<12>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<13>
+    SLICE_X23Y17.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<13>
+    SLICE_X23Y17.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<14>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<14>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<15>
+    SLICE_X23Y18.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<15>
+    SLICE_X23Y18.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<16>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<16>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<17>
+    SLICE_X23Y19.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<17>
+    SLICE_X23Y19.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<18>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<18>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<19>
+    SLICE_X23Y20.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<19>
+    SLICE_X23Y20.Y       Tciny                 0.923   fpga_inst/FSM/_sub0000<20>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<20>
+                                                       fpga_inst/FSM/Msub__sub0000_xor<21>
+    SLICE_X20Y16.G4      net (fanout=1)        1.983   fpga_inst/FSM/_sub0000<21>
+    SLICE_X20Y16.COUT    Topcyg                1.096   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<1>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_lut<1>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<1>
+    SLICE_X20Y17.CIN     net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<1>
+    SLICE_X20Y17.COUT    Tbyp                  0.120   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<3>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<2>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<3>
+    SLICE_X20Y18.CIN     net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<3>
+    SLICE_X20Y18.COUT    Tbyp                  0.120   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<5>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<4>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<5>
+    SLICE_X20Y19.CIN     net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<5>
+    SLICE_X20Y19.XB      Tcinxb                0.440   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<6>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<6>
+    SLICE_X21Y0.G2       net (fanout=21)       1.370   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<6>
+    SLICE_X21Y0.Y        Tilo                  0.551   fpga_inst/FSM/DISPLAY_INIT_64_cmp_eq0000
+                                                       fpga_inst/FSM/DISPLAY_INIT_0_cmp_eq000111
+    SLICE_X15Y5.G4       net (fanout=9)        1.602   fpga_inst/FSM/N72
+    SLICE_X15Y5.Y        Tilo                  0.551   fpga_inst/FSM/DISPLAY_INIT_24_and0009
+                                                       fpga_inst/FSM/DISPLAY_INIT_24_cmp_eq00001
+    SLICE_X16Y10.G2      net (fanout=14)       1.551   fpga_inst/FSM/DISPLAY_INIT_24_cmp_eq0000
+    SLICE_X16Y10.Y       Tilo                  0.608   fpga_inst/FSM/DISPLAY_INIT_64_and0006
+                                                       fpga_inst/FSM/DISPLAY_INIT_24_and00111
+    SLICE_X16Y4.G2       net (fanout=3)        0.948   fpga_inst/FSM/DISPLAY_INIT_24_and0011
+    SLICE_X16Y4.COUT     Topcyg                1.096   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<1>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_lut<1>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<1>
+    SLICE_X16Y5.CIN      net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<1>
+    SLICE_X16Y5.COUT     Tbyp                  0.120   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<3>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<2>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<3>
+    SLICE_X16Y6.CIN      net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<3>
+    SLICE_X16Y6.COUT     Tbyp                  0.120   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<5>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<4>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<5>
+    SLICE_X16Y7.CIN      net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<5>
+    SLICE_X16Y7.XB       Tcinxb                0.440   fpga_inst/FSM/DISPLAY_INIT_16_mux0002315
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<6>
+    SLICE_X12Y2.F1       net (fanout=2)        1.359   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<6>
+    SLICE_X12Y2.X        Tilo                  0.608   fpga_inst/FSM/N48
+                                                       fpga_inst/FSM/DISPLAY_INIT_64_or00001138
+    SLICE_X10Y3.G1       net (fanout=2)        0.581   fpga_inst/FSM/N48
+    SLICE_X10Y3.Y        Tilo                  0.608   fpga_inst/FSM/N94
+                                                       fpga_inst/FSM/DISPLAY_INIT_56_mux0002361
+    SLICE_X9Y2.G1        net (fanout=2)        0.678   fpga_inst/FSM/DISPLAY_INIT_56_mux0002361
+    SLICE_X9Y2.Y         Tilo                  0.551   fpga_inst/FSM/DISPLAY_INIT<69>
+                                                       fpga_inst/FSM/DISPLAY_INIT_64_mux00023120
+    SLICE_X1Y10.G1       net (fanout=8)        2.545   fpga_inst/FSM/N93
+    SLICE_X1Y10.CLK      Tgck                  0.633   fpga_inst/FSM/DISPLAY_INIT<67>
+                                                       fpga_inst/FSM/DISPLAY_INIT_67_mux0002211
+                                                       fpga_inst/FSM/DISPLAY_INIT_67
+    -------------------------------------------------  ---------------------------
+    Total                                     24.542ns (11.368ns logic, 13.174ns route)
+                                                       (46.3% logic, 53.7% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point fpga_inst/FSM/DISPLAY_INIT_64 (SLICE_X1Y12.G1), 16504 paths
+--------------------------------------------------------------------------------
+Slack (setup path):     10.777ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               fpga_inst/FSM/DIS_COL_2 (FF)
+  Destination:          fpga_inst/FSM/DISPLAY_INIT_64 (FF)
+  Requirement:          35.000ns
+  Data Path Delay:      24.223ns (Levels of Logic = 25)
+  Clock Path Skew:      0.000ns
+  Source Clock:         clk rising at 0.000ns
+  Destination Clock:    clk rising at 35.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: fpga_inst/FSM/DIS_COL_2 to fpga_inst/FSM/DISPLAY_INIT_64
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X22Y9.XQ       Tcko                  0.720   fpga_inst/FSM/DIS_COL<2>
+                                                       fpga_inst/FSM/DIS_COL_2
+    SLICE_X23Y11.F1      net (fanout=19)       0.581   fpga_inst/FSM/DIS_COL<2>
+    SLICE_X23Y11.COUT    Topcyf                1.027   fpga_inst/FSM/_sub0000<2>
+                                                       fpga_inst/FSM/Msub__sub0000_lut<2>_INV_0
+                                                       fpga_inst/FSM/Msub__sub0000_cy<2>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<3>
+    SLICE_X23Y12.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<3>
+    SLICE_X23Y12.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<4>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<4>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<5>
+    SLICE_X23Y13.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<5>
+    SLICE_X23Y13.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<6>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<6>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<7>
+    SLICE_X23Y14.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<7>
+    SLICE_X23Y14.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<8>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<8>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<9>
+    SLICE_X23Y15.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<9>
+    SLICE_X23Y15.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<10>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<10>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<11>
+    SLICE_X23Y16.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<11>
+    SLICE_X23Y16.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<12>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<12>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<13>
+    SLICE_X23Y17.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<13>
+    SLICE_X23Y17.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<14>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<14>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<15>
+    SLICE_X23Y18.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<15>
+    SLICE_X23Y18.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<16>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<16>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<17>
+    SLICE_X23Y19.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<17>
+    SLICE_X23Y19.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<18>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<18>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<19>
+    SLICE_X23Y20.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<19>
+    SLICE_X23Y20.Y       Tciny                 0.923   fpga_inst/FSM/_sub0000<20>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<20>
+                                                       fpga_inst/FSM/Msub__sub0000_xor<21>
+    SLICE_X20Y16.G4      net (fanout=1)        1.983   fpga_inst/FSM/_sub0000<21>
+    SLICE_X20Y16.COUT    Topcyg                1.096   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<1>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_lut<1>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<1>
+    SLICE_X20Y17.CIN     net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<1>
+    SLICE_X20Y17.COUT    Tbyp                  0.120   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<3>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<2>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<3>
+    SLICE_X20Y18.CIN     net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<3>
+    SLICE_X20Y18.COUT    Tbyp                  0.120   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<5>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<4>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<5>
+    SLICE_X20Y19.CIN     net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<5>
+    SLICE_X20Y19.XB      Tcinxb                0.440   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<6>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<6>
+    SLICE_X21Y0.G2       net (fanout=21)       1.370   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<6>
+    SLICE_X21Y0.Y        Tilo                  0.551   fpga_inst/FSM/DISPLAY_INIT_64_cmp_eq0000
+                                                       fpga_inst/FSM/DISPLAY_INIT_0_cmp_eq000111
+    SLICE_X15Y5.G4       net (fanout=9)        1.602   fpga_inst/FSM/N72
+    SLICE_X15Y5.Y        Tilo                  0.551   fpga_inst/FSM/DISPLAY_INIT_24_and0009
+                                                       fpga_inst/FSM/DISPLAY_INIT_24_cmp_eq00001
+    SLICE_X16Y10.G2      net (fanout=14)       1.551   fpga_inst/FSM/DISPLAY_INIT_24_cmp_eq0000
+    SLICE_X16Y10.Y       Tilo                  0.608   fpga_inst/FSM/DISPLAY_INIT_64_and0006
+                                                       fpga_inst/FSM/DISPLAY_INIT_24_and00111
+    SLICE_X16Y4.G2       net (fanout=3)        0.948   fpga_inst/FSM/DISPLAY_INIT_24_and0011
+    SLICE_X16Y4.COUT     Topcyg                1.096   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<1>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_lut<1>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<1>
+    SLICE_X16Y5.CIN      net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<1>
+    SLICE_X16Y5.COUT     Tbyp                  0.120   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<3>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<2>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<3>
+    SLICE_X16Y6.CIN      net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<3>
+    SLICE_X16Y6.COUT     Tbyp                  0.120   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<5>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<4>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<5>
+    SLICE_X16Y7.CIN      net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<5>
+    SLICE_X16Y7.XB       Tcinxb                0.440   fpga_inst/FSM/DISPLAY_INIT_16_mux0002315
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<6>
+    SLICE_X12Y2.F1       net (fanout=2)        1.359   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<6>
+    SLICE_X12Y2.X        Tilo                  0.608   fpga_inst/FSM/N48
+                                                       fpga_inst/FSM/DISPLAY_INIT_64_or00001138
+    SLICE_X10Y3.G1       net (fanout=2)        0.581   fpga_inst/FSM/N48
+    SLICE_X10Y3.Y        Tilo                  0.608   fpga_inst/FSM/N94
+                                                       fpga_inst/FSM/DISPLAY_INIT_56_mux0002361
+    SLICE_X9Y2.G1        net (fanout=2)        0.678   fpga_inst/FSM/DISPLAY_INIT_56_mux0002361
+    SLICE_X9Y2.Y         Tilo                  0.551   fpga_inst/FSM/DISPLAY_INIT<69>
+                                                       fpga_inst/FSM/DISPLAY_INIT_64_mux00023120
+    SLICE_X1Y12.G1       net (fanout=8)        2.214   fpga_inst/FSM/N93
+    SLICE_X1Y12.CLK      Tgck                  0.633   fpga_inst/FSM/DISPLAY_INIT<64>
+                                                       fpga_inst/FSM/DISPLAY_INIT_64_mux0002211
+                                                       fpga_inst/FSM/DISPLAY_INIT_64
+    -------------------------------------------------  ---------------------------
+    Total                                     24.223ns (11.356ns logic, 12.867ns route)
+                                                       (46.9% logic, 53.1% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     10.787ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               fpga_inst/FSM/DIS_COL_1 (FF)
+  Destination:          fpga_inst/FSM/DISPLAY_INIT_64 (FF)
+  Requirement:          35.000ns
+  Data Path Delay:      24.213ns (Levels of Logic = 26)
+  Clock Path Skew:      0.000ns
+  Source Clock:         clk rising at 0.000ns
+  Destination Clock:    clk rising at 35.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: fpga_inst/FSM/DIS_COL_1 to fpga_inst/FSM/DISPLAY_INIT_64
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X22Y8.YQ       Tcko                  0.720   fpga_inst/FSM/DIS_COL<0>
+                                                       fpga_inst/FSM/DIS_COL_1
+    SLICE_X23Y10.G3      net (fanout=17)       0.431   fpga_inst/FSM/DIS_COL<1>
+    SLICE_X23Y10.COUT    Topcyg                1.039   fpga_inst/FSM/_sub0000<0>
+                                                       fpga_inst/FSM/Msub__sub0000_lut<1>_INV_0
+                                                       fpga_inst/FSM/Msub__sub0000_cy<1>
+    SLICE_X23Y11.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<1>
+    SLICE_X23Y11.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<2>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<2>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<3>
+    SLICE_X23Y12.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<3>
+    SLICE_X23Y12.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<4>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<4>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<5>
+    SLICE_X23Y13.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<5>
+    SLICE_X23Y13.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<6>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<6>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<7>
+    SLICE_X23Y14.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<7>
+    SLICE_X23Y14.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<8>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<8>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<9>
+    SLICE_X23Y15.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<9>
+    SLICE_X23Y15.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<10>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<10>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<11>
+    SLICE_X23Y16.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<11>
+    SLICE_X23Y16.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<12>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<12>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<13>
+    SLICE_X23Y17.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<13>
+    SLICE_X23Y17.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<14>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<14>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<15>
+    SLICE_X23Y18.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<15>
+    SLICE_X23Y18.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<16>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<16>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<17>
+    SLICE_X23Y19.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<17>
+    SLICE_X23Y19.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<18>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<18>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<19>
+    SLICE_X23Y20.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<19>
+    SLICE_X23Y20.Y       Tciny                 0.923   fpga_inst/FSM/_sub0000<20>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<20>
+                                                       fpga_inst/FSM/Msub__sub0000_xor<21>
+    SLICE_X20Y16.G4      net (fanout=1)        1.983   fpga_inst/FSM/_sub0000<21>
+    SLICE_X20Y16.COUT    Topcyg                1.096   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<1>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_lut<1>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<1>
+    SLICE_X20Y17.CIN     net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<1>
+    SLICE_X20Y17.COUT    Tbyp                  0.120   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<3>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<2>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<3>
+    SLICE_X20Y18.CIN     net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<3>
+    SLICE_X20Y18.COUT    Tbyp                  0.120   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<5>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<4>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<5>
+    SLICE_X20Y19.CIN     net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<5>
+    SLICE_X20Y19.XB      Tcinxb                0.440   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<6>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<6>
+    SLICE_X21Y0.G2       net (fanout=21)       1.370   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<6>
+    SLICE_X21Y0.Y        Tilo                  0.551   fpga_inst/FSM/DISPLAY_INIT_64_cmp_eq0000
+                                                       fpga_inst/FSM/DISPLAY_INIT_0_cmp_eq000111
+    SLICE_X15Y5.G4       net (fanout=9)        1.602   fpga_inst/FSM/N72
+    SLICE_X15Y5.Y        Tilo                  0.551   fpga_inst/FSM/DISPLAY_INIT_24_and0009
+                                                       fpga_inst/FSM/DISPLAY_INIT_24_cmp_eq00001
+    SLICE_X16Y10.G2      net (fanout=14)       1.551   fpga_inst/FSM/DISPLAY_INIT_24_cmp_eq0000
+    SLICE_X16Y10.Y       Tilo                  0.608   fpga_inst/FSM/DISPLAY_INIT_64_and0006
+                                                       fpga_inst/FSM/DISPLAY_INIT_24_and00111
+    SLICE_X16Y4.G2       net (fanout=3)        0.948   fpga_inst/FSM/DISPLAY_INIT_24_and0011
+    SLICE_X16Y4.COUT     Topcyg                1.096   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<1>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_lut<1>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<1>
+    SLICE_X16Y5.CIN      net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<1>
+    SLICE_X16Y5.COUT     Tbyp                  0.120   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<3>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<2>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<3>
+    SLICE_X16Y6.CIN      net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<3>
+    SLICE_X16Y6.COUT     Tbyp                  0.120   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<5>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<4>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<5>
+    SLICE_X16Y7.CIN      net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<5>
+    SLICE_X16Y7.XB       Tcinxb                0.440   fpga_inst/FSM/DISPLAY_INIT_16_mux0002315
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<6>
+    SLICE_X12Y2.F1       net (fanout=2)        1.359   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<6>
+    SLICE_X12Y2.X        Tilo                  0.608   fpga_inst/FSM/N48
+                                                       fpga_inst/FSM/DISPLAY_INIT_64_or00001138
+    SLICE_X10Y3.G1       net (fanout=2)        0.581   fpga_inst/FSM/N48
+    SLICE_X10Y3.Y        Tilo                  0.608   fpga_inst/FSM/N94
+                                                       fpga_inst/FSM/DISPLAY_INIT_56_mux0002361
+    SLICE_X9Y2.G1        net (fanout=2)        0.678   fpga_inst/FSM/DISPLAY_INIT_56_mux0002361
+    SLICE_X9Y2.Y         Tilo                  0.551   fpga_inst/FSM/DISPLAY_INIT<69>
+                                                       fpga_inst/FSM/DISPLAY_INIT_64_mux00023120
+    SLICE_X1Y12.G1       net (fanout=8)        2.214   fpga_inst/FSM/N93
+    SLICE_X1Y12.CLK      Tgck                  0.633   fpga_inst/FSM/DISPLAY_INIT<64>
+                                                       fpga_inst/FSM/DISPLAY_INIT_64_mux0002211
+                                                       fpga_inst/FSM/DISPLAY_INIT_64
+    -------------------------------------------------  ---------------------------
+    Total                                     24.213ns (11.496ns logic, 12.717ns route)
+                                                       (47.5% logic, 52.5% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     10.789ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               fpga_inst/FSM/DIS_COL_3 (FF)
+  Destination:          fpga_inst/FSM/DISPLAY_INIT_64 (FF)
+  Requirement:          35.000ns
+  Data Path Delay:      24.211ns (Levels of Logic = 25)
+  Clock Path Skew:      0.000ns
+  Source Clock:         clk rising at 0.000ns
+  Destination Clock:    clk rising at 35.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: fpga_inst/FSM/DIS_COL_3 to fpga_inst/FSM/DISPLAY_INIT_64
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X22Y9.YQ       Tcko                  0.720   fpga_inst/FSM/DIS_COL<2>
+                                                       fpga_inst/FSM/DIS_COL_3
+    SLICE_X23Y11.G2      net (fanout=19)       0.557   fpga_inst/FSM/DIS_COL<3>
+    SLICE_X23Y11.COUT    Topcyg                1.039   fpga_inst/FSM/_sub0000<2>
+                                                       fpga_inst/FSM/Msub__sub0000_lut<3>_INV_0
+                                                       fpga_inst/FSM/Msub__sub0000_cy<3>
+    SLICE_X23Y12.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<3>
+    SLICE_X23Y12.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<4>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<4>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<5>
+    SLICE_X23Y13.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<5>
+    SLICE_X23Y13.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<6>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<6>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<7>
+    SLICE_X23Y14.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<7>
+    SLICE_X23Y14.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<8>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<8>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<9>
+    SLICE_X23Y15.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<9>
+    SLICE_X23Y15.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<10>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<10>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<11>
+    SLICE_X23Y16.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<11>
+    SLICE_X23Y16.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<12>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<12>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<13>
+    SLICE_X23Y17.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<13>
+    SLICE_X23Y17.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<14>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<14>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<15>
+    SLICE_X23Y18.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<15>
+    SLICE_X23Y18.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<16>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<16>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<17>
+    SLICE_X23Y19.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<17>
+    SLICE_X23Y19.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<18>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<18>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<19>
+    SLICE_X23Y20.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<19>
+    SLICE_X23Y20.Y       Tciny                 0.923   fpga_inst/FSM/_sub0000<20>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<20>
+                                                       fpga_inst/FSM/Msub__sub0000_xor<21>
+    SLICE_X20Y16.G4      net (fanout=1)        1.983   fpga_inst/FSM/_sub0000<21>
+    SLICE_X20Y16.COUT    Topcyg                1.096   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<1>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_lut<1>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<1>
+    SLICE_X20Y17.CIN     net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<1>
+    SLICE_X20Y17.COUT    Tbyp                  0.120   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<3>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<2>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<3>
+    SLICE_X20Y18.CIN     net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<3>
+    SLICE_X20Y18.COUT    Tbyp                  0.120   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<5>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<4>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<5>
+    SLICE_X20Y19.CIN     net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<5>
+    SLICE_X20Y19.XB      Tcinxb                0.440   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<6>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<6>
+    SLICE_X21Y0.G2       net (fanout=21)       1.370   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<6>
+    SLICE_X21Y0.Y        Tilo                  0.551   fpga_inst/FSM/DISPLAY_INIT_64_cmp_eq0000
+                                                       fpga_inst/FSM/DISPLAY_INIT_0_cmp_eq000111
+    SLICE_X15Y5.G4       net (fanout=9)        1.602   fpga_inst/FSM/N72
+    SLICE_X15Y5.Y        Tilo                  0.551   fpga_inst/FSM/DISPLAY_INIT_24_and0009
+                                                       fpga_inst/FSM/DISPLAY_INIT_24_cmp_eq00001
+    SLICE_X16Y10.G2      net (fanout=14)       1.551   fpga_inst/FSM/DISPLAY_INIT_24_cmp_eq0000
+    SLICE_X16Y10.Y       Tilo                  0.608   fpga_inst/FSM/DISPLAY_INIT_64_and0006
+                                                       fpga_inst/FSM/DISPLAY_INIT_24_and00111
+    SLICE_X16Y4.G2       net (fanout=3)        0.948   fpga_inst/FSM/DISPLAY_INIT_24_and0011
+    SLICE_X16Y4.COUT     Topcyg                1.096   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<1>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_lut<1>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<1>
+    SLICE_X16Y5.CIN      net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<1>
+    SLICE_X16Y5.COUT     Tbyp                  0.120   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<3>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<2>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<3>
+    SLICE_X16Y6.CIN      net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<3>
+    SLICE_X16Y6.COUT     Tbyp                  0.120   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<5>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<4>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<5>
+    SLICE_X16Y7.CIN      net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<5>
+    SLICE_X16Y7.XB       Tcinxb                0.440   fpga_inst/FSM/DISPLAY_INIT_16_mux0002315
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<6>
+    SLICE_X12Y2.F1       net (fanout=2)        1.359   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<6>
+    SLICE_X12Y2.X        Tilo                  0.608   fpga_inst/FSM/N48
+                                                       fpga_inst/FSM/DISPLAY_INIT_64_or00001138
+    SLICE_X10Y3.G1       net (fanout=2)        0.581   fpga_inst/FSM/N48
+    SLICE_X10Y3.Y        Tilo                  0.608   fpga_inst/FSM/N94
+                                                       fpga_inst/FSM/DISPLAY_INIT_56_mux0002361
+    SLICE_X9Y2.G1        net (fanout=2)        0.678   fpga_inst/FSM/DISPLAY_INIT_56_mux0002361
+    SLICE_X9Y2.Y         Tilo                  0.551   fpga_inst/FSM/DISPLAY_INIT<69>
+                                                       fpga_inst/FSM/DISPLAY_INIT_64_mux00023120
+    SLICE_X1Y12.G1       net (fanout=8)        2.214   fpga_inst/FSM/N93
+    SLICE_X1Y12.CLK      Tgck                  0.633   fpga_inst/FSM/DISPLAY_INIT<64>
+                                                       fpga_inst/FSM/DISPLAY_INIT_64_mux0002211
+                                                       fpga_inst/FSM/DISPLAY_INIT_64
+    -------------------------------------------------  ---------------------------
+    Total                                     24.211ns (11.368ns logic, 12.843ns route)
+                                                       (47.0% logic, 53.0% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point fpga_inst/FSM/DISPLAY_INIT_66 (SLICE_X0Y8.G1), 16504 paths
+--------------------------------------------------------------------------------
+Slack (setup path):     10.830ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               fpga_inst/FSM/DIS_COL_2 (FF)
+  Destination:          fpga_inst/FSM/DISPLAY_INIT_66 (FF)
+  Requirement:          35.000ns
+  Data Path Delay:      24.170ns (Levels of Logic = 25)
+  Clock Path Skew:      0.000ns
+  Source Clock:         clk rising at 0.000ns
+  Destination Clock:    clk rising at 35.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: fpga_inst/FSM/DIS_COL_2 to fpga_inst/FSM/DISPLAY_INIT_66
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X22Y9.XQ       Tcko                  0.720   fpga_inst/FSM/DIS_COL<2>
+                                                       fpga_inst/FSM/DIS_COL_2
+    SLICE_X23Y11.F1      net (fanout=19)       0.581   fpga_inst/FSM/DIS_COL<2>
+    SLICE_X23Y11.COUT    Topcyf                1.027   fpga_inst/FSM/_sub0000<2>
+                                                       fpga_inst/FSM/Msub__sub0000_lut<2>_INV_0
+                                                       fpga_inst/FSM/Msub__sub0000_cy<2>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<3>
+    SLICE_X23Y12.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<3>
+    SLICE_X23Y12.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<4>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<4>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<5>
+    SLICE_X23Y13.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<5>
+    SLICE_X23Y13.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<6>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<6>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<7>
+    SLICE_X23Y14.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<7>
+    SLICE_X23Y14.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<8>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<8>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<9>
+    SLICE_X23Y15.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<9>
+    SLICE_X23Y15.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<10>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<10>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<11>
+    SLICE_X23Y16.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<11>
+    SLICE_X23Y16.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<12>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<12>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<13>
+    SLICE_X23Y17.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<13>
+    SLICE_X23Y17.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<14>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<14>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<15>
+    SLICE_X23Y18.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<15>
+    SLICE_X23Y18.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<16>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<16>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<17>
+    SLICE_X23Y19.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<17>
+    SLICE_X23Y19.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<18>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<18>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<19>
+    SLICE_X23Y20.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<19>
+    SLICE_X23Y20.Y       Tciny                 0.923   fpga_inst/FSM/_sub0000<20>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<20>
+                                                       fpga_inst/FSM/Msub__sub0000_xor<21>
+    SLICE_X20Y16.G4      net (fanout=1)        1.983   fpga_inst/FSM/_sub0000<21>
+    SLICE_X20Y16.COUT    Topcyg                1.096   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<1>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_lut<1>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<1>
+    SLICE_X20Y17.CIN     net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<1>
+    SLICE_X20Y17.COUT    Tbyp                  0.120   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<3>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<2>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<3>
+    SLICE_X20Y18.CIN     net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<3>
+    SLICE_X20Y18.COUT    Tbyp                  0.120   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<5>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<4>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<5>
+    SLICE_X20Y19.CIN     net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<5>
+    SLICE_X20Y19.XB      Tcinxb                0.440   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<6>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<6>
+    SLICE_X21Y0.G2       net (fanout=21)       1.370   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<6>
+    SLICE_X21Y0.Y        Tilo                  0.551   fpga_inst/FSM/DISPLAY_INIT_64_cmp_eq0000
+                                                       fpga_inst/FSM/DISPLAY_INIT_0_cmp_eq000111
+    SLICE_X15Y5.G4       net (fanout=9)        1.602   fpga_inst/FSM/N72
+    SLICE_X15Y5.Y        Tilo                  0.551   fpga_inst/FSM/DISPLAY_INIT_24_and0009
+                                                       fpga_inst/FSM/DISPLAY_INIT_24_cmp_eq00001
+    SLICE_X16Y10.G2      net (fanout=14)       1.551   fpga_inst/FSM/DISPLAY_INIT_24_cmp_eq0000
+    SLICE_X16Y10.Y       Tilo                  0.608   fpga_inst/FSM/DISPLAY_INIT_64_and0006
+                                                       fpga_inst/FSM/DISPLAY_INIT_24_and00111
+    SLICE_X16Y4.G2       net (fanout=3)        0.948   fpga_inst/FSM/DISPLAY_INIT_24_and0011
+    SLICE_X16Y4.COUT     Topcyg                1.096   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<1>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_lut<1>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<1>
+    SLICE_X16Y5.CIN      net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<1>
+    SLICE_X16Y5.COUT     Tbyp                  0.120   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<3>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<2>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<3>
+    SLICE_X16Y6.CIN      net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<3>
+    SLICE_X16Y6.COUT     Tbyp                  0.120   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<5>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<4>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<5>
+    SLICE_X16Y7.CIN      net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<5>
+    SLICE_X16Y7.XB       Tcinxb                0.440   fpga_inst/FSM/DISPLAY_INIT_16_mux0002315
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<6>
+    SLICE_X12Y2.F1       net (fanout=2)        1.359   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<6>
+    SLICE_X12Y2.X        Tilo                  0.608   fpga_inst/FSM/N48
+                                                       fpga_inst/FSM/DISPLAY_INIT_64_or00001138
+    SLICE_X10Y3.G1       net (fanout=2)        0.581   fpga_inst/FSM/N48
+    SLICE_X10Y3.Y        Tilo                  0.608   fpga_inst/FSM/N94
+                                                       fpga_inst/FSM/DISPLAY_INIT_56_mux0002361
+    SLICE_X9Y2.G1        net (fanout=2)        0.678   fpga_inst/FSM/DISPLAY_INIT_56_mux0002361
+    SLICE_X9Y2.Y         Tilo                  0.551   fpga_inst/FSM/DISPLAY_INIT<69>
+                                                       fpga_inst/FSM/DISPLAY_INIT_64_mux00023120
+    SLICE_X0Y8.G1        net (fanout=8)        2.104   fpga_inst/FSM/N93
+    SLICE_X0Y8.CLK       Tgck                  0.690   fpga_inst/FSM/DISPLAY_INIT<66>
+                                                       fpga_inst/FSM/DISPLAY_INIT_66_mux0002211
+                                                       fpga_inst/FSM/DISPLAY_INIT_66
+    -------------------------------------------------  ---------------------------
+    Total                                     24.170ns (11.413ns logic, 12.757ns route)
+                                                       (47.2% logic, 52.8% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     10.840ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               fpga_inst/FSM/DIS_COL_1 (FF)
+  Destination:          fpga_inst/FSM/DISPLAY_INIT_66 (FF)
+  Requirement:          35.000ns
+  Data Path Delay:      24.160ns (Levels of Logic = 26)
+  Clock Path Skew:      0.000ns
+  Source Clock:         clk rising at 0.000ns
+  Destination Clock:    clk rising at 35.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: fpga_inst/FSM/DIS_COL_1 to fpga_inst/FSM/DISPLAY_INIT_66
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X22Y8.YQ       Tcko                  0.720   fpga_inst/FSM/DIS_COL<0>
+                                                       fpga_inst/FSM/DIS_COL_1
+    SLICE_X23Y10.G3      net (fanout=17)       0.431   fpga_inst/FSM/DIS_COL<1>
+    SLICE_X23Y10.COUT    Topcyg                1.039   fpga_inst/FSM/_sub0000<0>
+                                                       fpga_inst/FSM/Msub__sub0000_lut<1>_INV_0
+                                                       fpga_inst/FSM/Msub__sub0000_cy<1>
+    SLICE_X23Y11.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<1>
+    SLICE_X23Y11.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<2>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<2>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<3>
+    SLICE_X23Y12.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<3>
+    SLICE_X23Y12.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<4>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<4>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<5>
+    SLICE_X23Y13.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<5>
+    SLICE_X23Y13.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<6>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<6>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<7>
+    SLICE_X23Y14.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<7>
+    SLICE_X23Y14.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<8>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<8>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<9>
+    SLICE_X23Y15.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<9>
+    SLICE_X23Y15.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<10>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<10>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<11>
+    SLICE_X23Y16.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<11>
+    SLICE_X23Y16.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<12>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<12>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<13>
+    SLICE_X23Y17.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<13>
+    SLICE_X23Y17.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<14>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<14>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<15>
+    SLICE_X23Y18.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<15>
+    SLICE_X23Y18.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<16>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<16>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<17>
+    SLICE_X23Y19.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<17>
+    SLICE_X23Y19.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<18>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<18>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<19>
+    SLICE_X23Y20.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<19>
+    SLICE_X23Y20.Y       Tciny                 0.923   fpga_inst/FSM/_sub0000<20>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<20>
+                                                       fpga_inst/FSM/Msub__sub0000_xor<21>
+    SLICE_X20Y16.G4      net (fanout=1)        1.983   fpga_inst/FSM/_sub0000<21>
+    SLICE_X20Y16.COUT    Topcyg                1.096   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<1>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_lut<1>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<1>
+    SLICE_X20Y17.CIN     net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<1>
+    SLICE_X20Y17.COUT    Tbyp                  0.120   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<3>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<2>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<3>
+    SLICE_X20Y18.CIN     net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<3>
+    SLICE_X20Y18.COUT    Tbyp                  0.120   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<5>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<4>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<5>
+    SLICE_X20Y19.CIN     net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<5>
+    SLICE_X20Y19.XB      Tcinxb                0.440   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<6>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<6>
+    SLICE_X21Y0.G2       net (fanout=21)       1.370   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<6>
+    SLICE_X21Y0.Y        Tilo                  0.551   fpga_inst/FSM/DISPLAY_INIT_64_cmp_eq0000
+                                                       fpga_inst/FSM/DISPLAY_INIT_0_cmp_eq000111
+    SLICE_X15Y5.G4       net (fanout=9)        1.602   fpga_inst/FSM/N72
+    SLICE_X15Y5.Y        Tilo                  0.551   fpga_inst/FSM/DISPLAY_INIT_24_and0009
+                                                       fpga_inst/FSM/DISPLAY_INIT_24_cmp_eq00001
+    SLICE_X16Y10.G2      net (fanout=14)       1.551   fpga_inst/FSM/DISPLAY_INIT_24_cmp_eq0000
+    SLICE_X16Y10.Y       Tilo                  0.608   fpga_inst/FSM/DISPLAY_INIT_64_and0006
+                                                       fpga_inst/FSM/DISPLAY_INIT_24_and00111
+    SLICE_X16Y4.G2       net (fanout=3)        0.948   fpga_inst/FSM/DISPLAY_INIT_24_and0011
+    SLICE_X16Y4.COUT     Topcyg                1.096   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<1>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_lut<1>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<1>
+    SLICE_X16Y5.CIN      net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<1>
+    SLICE_X16Y5.COUT     Tbyp                  0.120   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<3>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<2>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<3>
+    SLICE_X16Y6.CIN      net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<3>
+    SLICE_X16Y6.COUT     Tbyp                  0.120   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<5>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<4>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<5>
+    SLICE_X16Y7.CIN      net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<5>
+    SLICE_X16Y7.XB       Tcinxb                0.440   fpga_inst/FSM/DISPLAY_INIT_16_mux0002315
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<6>
+    SLICE_X12Y2.F1       net (fanout=2)        1.359   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<6>
+    SLICE_X12Y2.X        Tilo                  0.608   fpga_inst/FSM/N48
+                                                       fpga_inst/FSM/DISPLAY_INIT_64_or00001138
+    SLICE_X10Y3.G1       net (fanout=2)        0.581   fpga_inst/FSM/N48
+    SLICE_X10Y3.Y        Tilo                  0.608   fpga_inst/FSM/N94
+                                                       fpga_inst/FSM/DISPLAY_INIT_56_mux0002361
+    SLICE_X9Y2.G1        net (fanout=2)        0.678   fpga_inst/FSM/DISPLAY_INIT_56_mux0002361
+    SLICE_X9Y2.Y         Tilo                  0.551   fpga_inst/FSM/DISPLAY_INIT<69>
+                                                       fpga_inst/FSM/DISPLAY_INIT_64_mux00023120
+    SLICE_X0Y8.G1        net (fanout=8)        2.104   fpga_inst/FSM/N93
+    SLICE_X0Y8.CLK       Tgck                  0.690   fpga_inst/FSM/DISPLAY_INIT<66>
+                                                       fpga_inst/FSM/DISPLAY_INIT_66_mux0002211
+                                                       fpga_inst/FSM/DISPLAY_INIT_66
+    -------------------------------------------------  ---------------------------
+    Total                                     24.160ns (11.553ns logic, 12.607ns route)
+                                                       (47.8% logic, 52.2% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     10.842ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               fpga_inst/FSM/DIS_COL_3 (FF)
+  Destination:          fpga_inst/FSM/DISPLAY_INIT_66 (FF)
+  Requirement:          35.000ns
+  Data Path Delay:      24.158ns (Levels of Logic = 25)
+  Clock Path Skew:      0.000ns
+  Source Clock:         clk rising at 0.000ns
+  Destination Clock:    clk rising at 35.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: fpga_inst/FSM/DIS_COL_3 to fpga_inst/FSM/DISPLAY_INIT_66
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X22Y9.YQ       Tcko                  0.720   fpga_inst/FSM/DIS_COL<2>
+                                                       fpga_inst/FSM/DIS_COL_3
+    SLICE_X23Y11.G2      net (fanout=19)       0.557   fpga_inst/FSM/DIS_COL<3>
+    SLICE_X23Y11.COUT    Topcyg                1.039   fpga_inst/FSM/_sub0000<2>
+                                                       fpga_inst/FSM/Msub__sub0000_lut<3>_INV_0
+                                                       fpga_inst/FSM/Msub__sub0000_cy<3>
+    SLICE_X23Y12.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<3>
+    SLICE_X23Y12.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<4>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<4>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<5>
+    SLICE_X23Y13.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<5>
+    SLICE_X23Y13.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<6>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<6>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<7>
+    SLICE_X23Y14.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<7>
+    SLICE_X23Y14.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<8>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<8>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<9>
+    SLICE_X23Y15.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<9>
+    SLICE_X23Y15.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<10>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<10>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<11>
+    SLICE_X23Y16.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<11>
+    SLICE_X23Y16.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<12>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<12>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<13>
+    SLICE_X23Y17.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<13>
+    SLICE_X23Y17.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<14>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<14>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<15>
+    SLICE_X23Y18.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<15>
+    SLICE_X23Y18.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<16>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<16>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<17>
+    SLICE_X23Y19.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<17>
+    SLICE_X23Y19.COUT    Tbyp                  0.128   fpga_inst/FSM/_sub0000<18>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<18>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<19>
+    SLICE_X23Y20.CIN     net (fanout=1)        0.000   fpga_inst/FSM/Msub__sub0000_cy<19>
+    SLICE_X23Y20.Y       Tciny                 0.923   fpga_inst/FSM/_sub0000<20>
+                                                       fpga_inst/FSM/Msub__sub0000_cy<20>
+                                                       fpga_inst/FSM/Msub__sub0000_xor<21>
+    SLICE_X20Y16.G4      net (fanout=1)        1.983   fpga_inst/FSM/_sub0000<21>
+    SLICE_X20Y16.COUT    Topcyg                1.096   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<1>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_lut<1>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<1>
+    SLICE_X20Y17.CIN     net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<1>
+    SLICE_X20Y17.COUT    Tbyp                  0.120   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<3>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<2>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<3>
+    SLICE_X20Y18.CIN     net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<3>
+    SLICE_X20Y18.COUT    Tbyp                  0.120   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<5>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<4>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<5>
+    SLICE_X20Y19.CIN     net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<5>
+    SLICE_X20Y19.XB      Tcinxb                0.440   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<6>
+                                                       fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<6>
+    SLICE_X21Y0.G2       net (fanout=21)       1.370   fpga_inst/FSM/DISPLAY_INIT_120_and00001_wg_cy<6>
+    SLICE_X21Y0.Y        Tilo                  0.551   fpga_inst/FSM/DISPLAY_INIT_64_cmp_eq0000
+                                                       fpga_inst/FSM/DISPLAY_INIT_0_cmp_eq000111
+    SLICE_X15Y5.G4       net (fanout=9)        1.602   fpga_inst/FSM/N72
+    SLICE_X15Y5.Y        Tilo                  0.551   fpga_inst/FSM/DISPLAY_INIT_24_and0009
+                                                       fpga_inst/FSM/DISPLAY_INIT_24_cmp_eq00001
+    SLICE_X16Y10.G2      net (fanout=14)       1.551   fpga_inst/FSM/DISPLAY_INIT_24_cmp_eq0000
+    SLICE_X16Y10.Y       Tilo                  0.608   fpga_inst/FSM/DISPLAY_INIT_64_and0006
+                                                       fpga_inst/FSM/DISPLAY_INIT_24_and00111
+    SLICE_X16Y4.G2       net (fanout=3)        0.948   fpga_inst/FSM/DISPLAY_INIT_24_and0011
+    SLICE_X16Y4.COUT     Topcyg                1.096   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<1>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_lut<1>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<1>
+    SLICE_X16Y5.CIN      net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<1>
+    SLICE_X16Y5.COUT     Tbyp                  0.120   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<3>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<2>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<3>
+    SLICE_X16Y6.CIN      net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<3>
+    SLICE_X16Y6.COUT     Tbyp                  0.120   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<5>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<4>
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<5>
+    SLICE_X16Y7.CIN      net (fanout=1)        0.000   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<5>
+    SLICE_X16Y7.XB       Tcinxb                0.440   fpga_inst/FSM/DISPLAY_INIT_16_mux0002315
+                                                       fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<6>
+    SLICE_X12Y2.F1       net (fanout=2)        1.359   fpga_inst/FSM/DISPLAY_INIT_90_or000011_wg_cy<6>
+    SLICE_X12Y2.X        Tilo                  0.608   fpga_inst/FSM/N48
+                                                       fpga_inst/FSM/DISPLAY_INIT_64_or00001138
+    SLICE_X10Y3.G1       net (fanout=2)        0.581   fpga_inst/FSM/N48
+    SLICE_X10Y3.Y        Tilo                  0.608   fpga_inst/FSM/N94
+                                                       fpga_inst/FSM/DISPLAY_INIT_56_mux0002361
+    SLICE_X9Y2.G1        net (fanout=2)        0.678   fpga_inst/FSM/DISPLAY_INIT_56_mux0002361
+    SLICE_X9Y2.Y         Tilo                  0.551   fpga_inst/FSM/DISPLAY_INIT<69>
+                                                       fpga_inst/FSM/DISPLAY_INIT_64_mux00023120
+    SLICE_X0Y8.G1        net (fanout=8)        2.104   fpga_inst/FSM/N93
+    SLICE_X0Y8.CLK       Tgck                  0.690   fpga_inst/FSM/DISPLAY_INIT<66>
+                                                       fpga_inst/FSM/DISPLAY_INIT_66_mux0002211
+                                                       fpga_inst/FSM/DISPLAY_INIT_66
+    -------------------------------------------------  ---------------------------
+    Total                                     24.158ns (11.425ns logic, 12.733ns route)
+                                                       (47.3% logic, 52.7% route)
+
+--------------------------------------------------------------------------------
+
+Hold Paths: PERIOD analysis for net "DCMclkgen/CLKFX_BUF" derived from
+ NET "smclk_x1" PERIOD = 125 ns HIGH 50%;
+ divided by 3.57 to 35 nS and duty cycle corrected to HIGH 17.500 nS 
+
+--------------------------------------------------------------------------------
+
+Paths for end point fpga_inst/FSM/CNT_UP/counter_0 (SLICE_X10Y17.BX), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      0.858ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               fpga_inst/FSM/CNT_UP/counter_0 (FF)
+  Destination:          fpga_inst/FSM/CNT_UP/counter_0 (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      0.858ns (Levels of Logic = 0)
+  Clock Path Skew:      0.000ns
+  Source Clock:         clk rising at 35.000ns
+  Destination Clock:    clk rising at 35.000ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path: fpga_inst/FSM/CNT_UP/counter_0 to fpga_inst/FSM/CNT_UP/counter_0
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X10Y17.XQ      Tcko                  0.576   fpga_inst/FSM/CNT_UP/counter<0>
+                                                       fpga_inst/FSM/CNT_UP/counter_0
+    SLICE_X10Y17.BX      net (fanout=5)        0.565   fpga_inst/FSM/CNT_UP/counter<0>
+    SLICE_X10Y17.CLK     Tckdi       (-Th)     0.283   fpga_inst/FSM/CNT_UP/counter<0>
+                                                       fpga_inst/FSM/CNT_UP/counter_0
+    -------------------------------------------------  ---------------------------
+    Total                                      0.858ns (0.293ns logic, 0.565ns route)
+                                                       (34.1% logic, 65.9% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point fpga_inst/FSM/CNT_EN_UP (SLICE_X10Y16.BY), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      0.868ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               fpga_inst/FSM/CNT_POSCHANGE/cycle (FF)
+  Destination:          fpga_inst/FSM/CNT_EN_UP (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      0.895ns (Levels of Logic = 0)
+  Clock Path Skew:      0.027ns (0.258 - 0.231)
+  Source Clock:         clk rising at 35.000ns
+  Destination Clock:    clk rising at 35.000ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path: fpga_inst/FSM/CNT_POSCHANGE/cycle to fpga_inst/FSM/CNT_EN_UP
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X9Y16.YQ       Tcko                  0.576   fpga_inst/FSM/CNT_POSCHANGE/cycle
+                                                       fpga_inst/FSM/CNT_POSCHANGE/cycle
+    SLICE_X10Y16.BY      net (fanout=3)        0.556   fpga_inst/FSM/CNT_POSCHANGE/cycle
+    SLICE_X10Y16.CLK     Tckdi       (-Th)     0.237   fpga_inst/FSM/CNT_EN_UP
+                                                       fpga_inst/FSM/CNT_EN_UP
+    -------------------------------------------------  ---------------------------
+    Total                                      0.895ns (0.339ns logic, 0.556ns route)
+                                                       (37.9% logic, 62.1% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point fpga_inst/FSM/CNT_TOSIDE/counter_0 (SLICE_X19Y20.BY), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      0.913ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               fpga_inst/FSM/CNT_TOSIDE/counter_0 (FF)
+  Destination:          fpga_inst/FSM/CNT_TOSIDE/counter_0 (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      0.913ns (Levels of Logic = 0)
+  Clock Path Skew:      0.000ns
+  Source Clock:         clk rising at 35.000ns
+  Destination Clock:    clk rising at 35.000ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path: fpga_inst/FSM/CNT_TOSIDE/counter_0 to fpga_inst/FSM/CNT_TOSIDE/counter_0
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X19Y20.YQ      Tcko                  0.576   fpga_inst/FSM/CNT_TOSIDE/counter<1>
+                                                       fpga_inst/FSM/CNT_TOSIDE/counter_0
+    SLICE_X19Y20.BY      net (fanout=6)        0.574   fpga_inst/FSM/CNT_TOSIDE/counter<0>
+    SLICE_X19Y20.CLK     Tckdi       (-Th)     0.237   fpga_inst/FSM/CNT_TOSIDE/counter<1>
+                                                       fpga_inst/FSM/CNT_TOSIDE/counter_0
+    -------------------------------------------------  ---------------------------
+    Total                                      0.913ns (0.339ns logic, 0.574ns route)
+                                                       (37.1% logic, 62.9% route)
+
+--------------------------------------------------------------------------------
+
+Component Switching Limit Checks: PERIOD analysis for net "DCMclkgen/CLKFX_BUF" derived from
+ NET "smclk_x1" PERIOD = 125 ns HIGH 50%;
+ divided by 3.57 to 35 nS and duty cycle corrected to HIGH 17.500 nS 
+
+--------------------------------------------------------------------------------
+Slack: 20.557ns (max period limit - period)
+  Period: 35.000ns
+  Max period limit: 55.557ns (18.000MHz) (Tdcmpfx)
+  Physical resource: DCMclkgen/DCM_INST/CLKFX
+  Logical resource: DCMclkgen/DCM_INST/CLKFX
+  Location pin: DCM_X0Y0.CLKFX
+  Clock network: DCMclkgen/CLKFX_BUF
+--------------------------------------------------------------------------------
+Slack: 30.239ns (period - min period limit)
+  Period: 35.000ns
+  Min period limit: 4.761ns (210.040MHz) (Tdcmpfx)
+  Physical resource: DCMclkgen/DCM_INST/CLKFX
+  Logical resource: DCMclkgen/DCM_INST/CLKFX
+  Location pin: DCM_X0Y0.CLKFX
+  Clock network: DCMclkgen/CLKFX_BUF
+--------------------------------------------------------------------------------
+Slack: 33.428ns (period - (min low pulse limit / (low pulse / period)))
+  Period: 35.000ns
+  Low pulse: 17.500ns
+  Low pulse limit: 0.786ns (Tcl)
+  Physical resource: fpga_inst/FSM/IMAGE<0>/CLK
+  Logical resource: fpga_inst/FSM/IMAGE_0/CK
+  Location pin: SLICE_X10Y23.CLK
+  Clock network: clk
+--------------------------------------------------------------------------------
+
+
+Derived Constraint Report
+Derived Constraints for smclk_x1
++-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+|                               |   Period    |       Actual Period       |      Timing Errors        |      Paths Analyzed       |
+|           Constraint          | Requirement |-------------+-------------|-------------+-------------|-------------+-------------|
+|                               |             |   Direct    | Derivative  |   Direct    | Derivative  |   Direct    | Derivative  |
++-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+|smclk_x1                       |    125.000ns|     50.000ns|     87.693ns|            0|            0|            0|      1984015|
+| DCMclkgen/CLKFX_BUF           |     35.000ns|     24.554ns|          N/A|            0|            0|      1984015|            0|
++-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+
+All constraints were met.
+
+
+Data Sheet report:
+-----------------
+All values displayed in nanoseconds (ns)
+
+Clock to Setup on destination clock SMCLK
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+SMCLK          |   24.554|         |         |         |
+---------------+---------+---------+---------+---------+
+
+
+Timing summary:
+---------------
+
+Timing errors: 0  Score: 0  (Setup/Max: 0, Hold: 0)
+
+Constraints cover 1984015 paths, 0 nets, and 5701 connections
+
+Design statistics:
+   Minimum period:  50.000ns{1}   (Maximum frequency:  20.000MHz)
+
+
+------------------------------------Footnotes-----------------------------------
+1)  The minimum period statistic assumes all single cycle delays.
+
+Analysis completed Mon May  8 21:35:53 2023 
+--------------------------------------------------------------------------------
+
+Trace Settings:
+-------------------------
+Trace Settings 
+
+Peak Memory Usage: 322 MB
+
+
+

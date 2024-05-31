@@ -1,0 +1,46 @@
+Release 14.7 - xst P.20131013 (lin64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+--> 
+Parameter TMPDIR set to /mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.02 secs
+ 
+--> 
+Parameter xsthdpdir set to /mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/xst
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.02 secs
+ 
+--> 
+WARNING:Xst:3164 - Option "-debug" found multiple times in the command line. Only the first occurence is considered.
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+WARNING:HDLParsers:3607 - Unit work/cnt is now defined in a different file.  It was defined in "/mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/proj_template/counter_N.vhd", and is now defined in "/mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/CNT.vhd".
+WARNING:HDLParsers:3607 - Unit work/cnt_for_n/Behavioral is now defined in a different file.  It was defined in "/mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/proj_template/counter_N.vhd", and is now defined in "/mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/CNT.vhd".
+Compiling vhdl file "/mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/CNT.vhd" in Library work.
+ERROR:HDLParsers:3312 - "/mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/CNT.vhd" Line 18. Undefined symbol 'stop'.
+ERROR:HDLParsers:1209 - "/mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/CNT.vhd" Line 18. stop: Undefined symbol (last report in this block)
+ERROR:HDLParsers:3324 - "/mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/CNT.vhd" Line 18. IN mode Formal SIZE of to_unsigned with no default value must be associated with an actual value.
+ERROR:HDLParsers:3312 - "/mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/CNT.vhd" Line 24. Undefined symbol 'enable'.
+ERROR:HDLParsers:1209 - "/mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/CNT.vhd" Line 24. enable: Undefined symbol (last report in this block)
+ERROR:HDLParsers:3312 - "/mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/CNT.vhd" Line 27. Undefined symbol 'cycle'.
+ERROR:HDLParsers:1209 - "/mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/CNT.vhd" Line 30. cycle: Undefined symbol (last report in this block)
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.02 secs
+ 
+--> 
+
+
+Total memory usage is 456324 kilobytes
+
+Number of errors   :    7 (   0 filtered)
+Number of warnings :    3 (   0 filtered)
+Number of infos    :    0 (   0 filtered)
+

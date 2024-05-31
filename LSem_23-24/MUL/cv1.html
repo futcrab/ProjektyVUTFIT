@@ -1,0 +1,132 @@
+<style>
+		#source, #destination
+		{
+			width: 40%;
+			aspect-ratio: 1;
+		}
+</style>
+
+<h1>Source</h1>
+<canvas width=1000 height=1000 id="source"></canvas>
+<br><br>
+<button type="button" onclick="filter()">Filter</button>
+<br>
+<h1>Destination</h1>
+<canvas width=1000 height=1000 id="destination"></canvas>
+
+<script>
+// above is defined the scene	
+
+// here is the source and destination canvas
+var sourceCanvas = document.getElementById("source");
+var sourceCanvasContext = sourceCanvas.getContext("2d");
+var destinationCanvas = document.getElementById("destination");
+var destinationCanvasContext = destinationCanvas.getContext("2d");
+
+// the source is filled with an image
+sourceCanvasContext.rect(0, 0, sourceCanvas.width, sourceCanvas.height);
+sourceCanvasContext.fillStyle = "black";
+sourceCanvasContext.fill();
+for(var i=0; i<500; i++)
+{
+	size = Math.floor(Math.random() * 70);
+	x = Math.floor(Math.random() * sourceCanvas.width);
+	y = Math.floor(Math.random() * sourceCanvas.height);
+	character = String.fromCharCode(Math.floor(Math.random() * 256));
+	opacity = Math.floor(Math.random() * 256);
+	sourceCanvasContext.font = size + "px serif";
+	sourceCanvasContext.fillStyle = "#00ff00" + opacity.toString(16);;
+	sourceCanvasContext.fillText(character, x, y);
+}
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// TASK - implement the FIR filter (convolution)
+// the pixels in the images are stored as a linear array of RGBA values 
+// destinationImage.data is an array [R,G,B,A, R,G,B,A, ...]
+// the resolution of the image is in destinationImage.height and destinationImage.width
+// source image is the same
+// take the pixels from the source image, convolve them with the defined kernel, store them to the destination image
+function filter()
+{
+	// here are the raw image data from both canvases
+	var sourceImage = sourceCanvasContext.getImageData(0, 0, sourceCanvas.width, sourceCanvas.height);
+	var destinationImage = destinationCanvasContext.getImageData(0, 0, destinationCanvas.width, destinationCanvas.height);
+
+	// the Gaussian-like convolution kernel is defined here
+	const kernelSize = 5;
+	const kernel = [[0.1, 0.4, 0.50, 0.4, 0.1],
+					[0.3, 0.6, 0.80, 0.6,0.3],
+					[0.5, 0.8, 1.00, 0.8, 0.5],
+					[0.3, 0.6, 0.8, 0.6, 0.3],
+					[0.1, 0.4, 0.5, 0.4, 0.1]];
+	// the distance should affect how far are the pixels samples
+	// for example, distance of 1 means that the immediate neighbors of the current pixel are sampled, like coords -2,-1,0,+1,+2
+	// distance of 2 means that pixels to convolution will be further with one pixel in between them, like coords -4,-2,0,+2,+4
+	const kernelDistance = 2;				
+	
+	//important steps: go through the whole input image, go through the whole kernel for each pixel, sample the pixels around the current one
+	// multiply with kernel values, sum, make sure that the result is divided by the sum of the whole kernel to keep it in the original range
+	// store the result to the destination image
+
+	// ... your turn ^_^
+
+	let arrayLineWidth = destinationImage.width*4;
+
+	let kernelValue = 0.0;
+
+	//calculate the sum of values in kernel
+	for (let i = 0; i < kernelSize; i++){
+		for (let j = 0; j < kernelSize; j++){
+			kernelValue += kernel[i][j];
+		}
+	}
+
+	for (let y = 0; y < destinationImage.height; y++){
+		for (let x = 0; x < arrayLineWidth; x+=4){
+			let sumR = 0.0;
+			let sumG = 0.0;
+			let sumB = 0.0;
+			let sumA = 0.0;
+
+			//filter
+			for (let ky = -2; ky < 3; ky++){
+				//get index of neighbour pixel with kernel distance
+				let pixelIndex_y = y + (ky * kernelDistance);
+				for (let kx = -2; kx < 3; kx++){
+					//get index of neighbour pixel with kernel distance
+					let pixelIndex_x = x + (kx * kernelDistance * 4);
+					
+					//check if pixel is inside image
+					if ((pixelIndex_x >= 0 && pixelIndex_x < arrayLineWidth) && (pixelIndex_y >= 0 && pixelIndex_y < destinationImage.height)){
+						//get value from filter matrix
+						matrixValue = kernel[ky+2][kx+2];
+						
+						//read data from source and multiply by value in matrix
+						let r = sourceImage.data[pixelIndex_y*arrayLineWidth + pixelIndex_x] * matrixValue;
+						let g = sourceImage.data[pixelIndex_y*arrayLineWidth + pixelIndex_x + 1] * matrixValue;
+						let b = sourceImage.data[pixelIndex_y*arrayLineWidth + pixelIndex_x + 2] * matrixValue;
+						let a = sourceImage.data[pixelIndex_y*arrayLineWidth + pixelIndex_x + 3] * matrixValue;
+						
+						//sum calculated data for pixel
+						sumR += r;
+						sumG += g;
+						sumB += b;
+						sumA += a;
+					//if outside of image continue (= +0)
+					}else{
+						continue;
+					}
+				}
+			}
+			//insert calculated sums to destination divided by sum of kernel
+			destinationImage.data[y*arrayLineWidth + x] = sumR / kernelValue;
+			destinationImage.data[y*arrayLineWidth + x + 1] = sumG / kernelValue;
+			destinationImage.data[y*arrayLineWidth + x + 2] = sumB / kernelValue;
+			destinationImage.data[y*arrayLineWidth + x + 3] = sumA / kernelValue;
+		}
+	}
+
+	// put the edited image back to the canvas
+	destinationCanvasContext.putImageData(destinationImage, 0, 0);
+}
+</script>

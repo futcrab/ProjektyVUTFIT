@@ -1,0 +1,17 @@
+Tutorial pred spustenim gifcreator:
+
+Linux:
+1. make install - nainstalovanie predrekvizit pomocou pip (predpoklada sa ze python 3.X a pip je nainstalovany, vyvyjane bolo na Python 3.11.1)
+5. Vyskusat demo ukazky: make demo_blocks, make demo_iter, make demo_video, make demo_dither
+6. V pripade neistoty vytlacit help panel (make help) alebo si precitat README.pdf dokumentaciu
+
+Windows:
+1. Windows standartne nepodporuje makefile, takze ak ho chcete pouzivat treba si stiahnut na to veci
+2. Ak sa rozhodnete pouzivat makefile riadte sa Linux tutorialom, len zmente v makefile python3 na python
+3. Nainstalovanie predrekvizit pomocou pip: (pip install --upgrade Pillow opencv-python numpy) (predpoklada sa ze python 3.X a pip je nainstalovany, vyvyjane bolo na Python 3.11.1)
+4. Vyskusat demo ukazky:
+    	Bloky: python gifcreator.py -i -in TestFiles/obr1.png -out outputGIF -b 16
+    	Iteracie: python gifcreator.py -i -in TestFiles/obr1.png -out outputGIF
+    	Video: python gifcreator.py -v -in TestFiles/video.mp4 -out outputGIF -s 00:00:03 -dur 5
+	Dither: python gifcreator.py -v -in TestFiles/video.mp4 -out outputGIF -s 00:00:03 -dur 5 -d
+5. V pripade neistoty vytlacit help panel (python gifcreator.py -h) alebo si precitat README.pdf dokumentaciu

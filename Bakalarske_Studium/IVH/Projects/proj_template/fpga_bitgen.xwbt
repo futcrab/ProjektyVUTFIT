@@ -1,0 +1,8 @@
+INTSTYLE=ise
+INFILE=/mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/fpga.ncd
+OUTFILE=/mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/fpga.bit
+FAMILY=Spartan3
+PART=xc3s50-4pq208
+WORKINGDIR=/mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template
+LICENSE=WebPack
+USER_INFO=212688876_0_0_131

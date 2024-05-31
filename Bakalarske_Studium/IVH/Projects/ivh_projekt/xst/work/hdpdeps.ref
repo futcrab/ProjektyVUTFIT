@@ -1,0 +1,88 @@
+V3 46
+FL /mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/clkgen.vhd 2023/05/06.19:06:41 P.20131013
+EN work/clkgen 1683574529 \
+      FL /mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/clkgen.vhd \
+      PB ieee/std_logic_1164 1381692176 PB ieee/NUMERIC_STD 1381692181 \
+      PB work/clkgen_cfg 1683574525 LB UNISIM PH unisim/VCOMPONENTS 1381692182
+AR work/clkgen/BEHAVIORAL 1683574530 \
+      FL /mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/clkgen.vhd \
+      EN work/clkgen 1683574529 CP BUFG CP IBUFG CP DCM
+FL /mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/clkgen_config.vhd 2023/05/06.19:06:41 P.20131013
+PH work/clkgen_cfg 1683574524 \
+      FL /mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/clkgen_config.vhd \
+      PB ieee/std_logic_1164 1381692176 PB ieee/std_logic_arith 1381692177
+PB work/clkgen_cfg 1683574525 \
+      FL /mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/clkgen_config.vhd \
+      PH work/clkgen_cfg 1683574524
+FL /mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/CNT.vhd 2023/05/07.17:05:07 P.20131013
+EN work/cnt 1683574520 \
+      FL /mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/CNT.vhd \
+      PB ieee/std_logic_1164 1381692176 PB ieee/NUMERIC_STD 1381692181 \
+      PB ieee/STD_LOGIC_UNSIGNED 1381692179
+AR work/CNT/Behavioral 1683574521 \
+      FL /mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/CNT.vhd \
+      EN work/cnt 1683574520
+FL /mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/counter_48.vhd 2023/05/07.16:58:23 P.20131013
+EN work/counter_48 1683471953 \
+      FL /mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/counter_48.vhd \
+      PB ieee/std_logic_1164 1381692176 PB ieee/NUMERIC_STD 1381692181 \
+      PB ieee/STD_LOGIC_UNSIGNED 1381692179
+AR work/counter_48/Behavioral 1683471954 \
+      FL /mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/counter_48.vhd \
+      EN work/counter_48 1683471953
+FL /mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/counter_8.vhd 2023/05/07.14:16:10 P.20131013
+EN work/counter_8 1683462911 \
+      FL /mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/counter_8.vhd \
+      PB ieee/std_logic_1164 1381692176 PB ieee/NUMERIC_STD 1381692181 \
+      PB ieee/STD_LOGIC_UNSIGNED 1381692179
+AR work/counter_8/Behavioral 1683462912 \
+      FL /mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/counter_8.vhd \
+      EN work/counter_8 1683462911
+FL /mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/fpga.vhd 2023/05/06.19:06:41 P.20131013
+EN work/fpga 1683574531 \
+      FL /mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/fpga.vhd \
+      PB ieee/std_logic_1164 1381692176 PB work/clkgen_cfg 1683574525
+AR work/fpga/arch_gp_ifc 1683574532 \
+      FL /mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/fpga.vhd \
+      EN work/fpga 1683574531 CP work/clkgen CP tlv_gp_ifc
+FL /mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/proj_template/column.vhd 2023/05/08.14:24:15 P.20131013
+EN work/stlpec 1683574518 \
+      FL /mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/proj_template/column.vhd \
+      PB ieee/std_logic_1164 1381692176 PB ieee/NUMERIC_STD 1381692181 \
+      PB work/effects_pack 1683574517
+AR work/stlpec/Behavioral 1683574519 \
+      FL /mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/proj_template/column.vhd \
+      EN work/stlpec 1683574518
+FL /mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/proj_template/counter_48.vhd 2023/05/07.14:13:17 P.20131013
+FL /mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/proj_template/counter_N.vhd 2023/05/06.19:06:41 P.20131013
+FL /mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/proj_template/effects_pack.vhd 2023/05/08.20:00:56 P.20131013
+PH work/effects_pack 1683574516 \
+      FL /mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/proj_template/effects_pack.vhd \
+      PB ieee/std_logic_1164 1381692176
+PB work/effects_pack 1683574517 \
+      FL /mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/proj_template/effects_pack.vhd \
+      PH work/effects_pack 1683574516
+FL /mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/proj_template/fpga_inst.vhd 2023/05/06.19:06:42 P.20131013
+AR work/tlv_gp_ifc/Behavioral 1683574533 \
+      FL /mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/proj_template/fpga_inst.vhd \
+      EN work/tlv_gp_ifc 1683574526 PB ieee/std_logic_1164 1381692176 \
+      PB ieee/STD_LOGIC_UNSIGNED 1381692179 AR work/fsm/behavioral 1683574528
+FL /mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/proj_template/FSM.vhd 2023/05/08.20:21:25 P.20131013
+EN work/fsm 1683574527 \
+      FL /mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/proj_template/FSM.vhd \
+      PB ieee/std_logic_1164 1381692176 PB ieee/NUMERIC_STD 1381692181 \
+      PB ieee/STD_LOGIC_UNSIGNED 1381692179 PB work/effects_pack 1683574517
+AR work/fsm/behavioral 1683574528 \
+      FL /mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/proj_template/FSM.vhd \
+      EN work/fsm 1683574527 CP std_logic_vector CP stlpec CP work/CNT CP MEMORY
+FL /mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/proj_template/ROM.vhd 2023/05/08.01:54:16 P.20131013
+EN work/MEMORY 1683574522 \
+      FL /mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/proj_template/ROM.vhd \
+      PB ieee/std_logic_1164 1381692176 PB ieee/NUMERIC_STD 1381692181
+AR work/MEMORY/Behavioral 1683574523 \
+      FL /mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/proj_template/ROM.vhd \
+      EN work/MEMORY 1683574522
+FL /mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/tlv_gp_ifc.vhd 2023/05/06.19:06:50 P.20131013
+EN work/tlv_gp_ifc 1683574526 \
+      FL /mnt/c/Users/duric/OneDrive/Dokumenty/skola/ivh/Projects/proj_template/tlv_gp_ifc.vhd \
+      PB ieee/std_logic_1164 1381692176

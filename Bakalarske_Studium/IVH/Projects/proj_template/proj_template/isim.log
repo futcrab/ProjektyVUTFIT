@@ -1,0 +1,20 @@
+ISim log file
+Running: Z:\proj_template\FSM_tb_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb Z:/proj_template/FSM_tb_isim_beh.wdb 
+ISim O.40d (signature 0x79f3f3a8)
+----------------------------------------------------------------------
+WARNING:Security:42 - Your software subscription period has lapsed. Your current version of Xilinx tools will continue to function, but you no longer qualify for Xilinx software updates or new releases.
+
+
+----------------------------------------------------------------------
+This is a Full version of ISim.
+Time resolution is 1 ps
+# onerror resume
+# wave add /
+# run 1000 ns
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+# restart
+# run 1.00s
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+Stopped at time : 8311175 ps : File "//VBoxSvr/fitkit-vbox-202103/proj_template/column.vhd" Line 28

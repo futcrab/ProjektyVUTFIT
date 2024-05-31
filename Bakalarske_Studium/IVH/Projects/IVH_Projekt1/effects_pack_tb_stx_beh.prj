@@ -1,0 +1,2 @@
+vhdl isim_temp "effects_pack.vhd"
+vhdl isim_temp "effects_pack_tb.vhd"

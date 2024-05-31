@@ -1,0 +1,36 @@
+Running: C:\XilinxISE\bin\nt\unwrapped\fuse.exe -intstyle ise -incremental -o Z:/proj_template/FSM_tb_isim_beh.exe -prj Z:/proj_template/FSM_tb_beh.prj work.FSM_tb 
+ISim O.40d (signature 0x79f3f3a8)
+Number of CPUs detected in this system: 1
+Turning on mult-threading, number of parallel sub-compilation jobs: 0 
+Determining compilation order of HDL files
+Parsing VHDL file "Z:/proj_template/effects_pack.vhd" into library work
+Parsing VHDL file "Z:/proj_template/ROM.vhd" into library work
+Parsing VHDL file "Z:/proj_template/counter_N.vhd" into library work
+Parsing VHDL file "Z:/proj_template/counter_48.vhd" into library work
+Parsing VHDL file "Z:/proj_template/column.vhd" into library work
+Parsing VHDL file "Z:/proj_template/FSM.vhd" into library work
+Parsing VHDL file "Z:/proj_template/FSM_tb.vhd" into library work
+Starting static elaboration
+Completed static elaboration
+Fuse Memory Usage: 73356 KB
+Fuse CPU Usage: 280 ms
+Using precompiled package standard from library std
+Using precompiled package std_logic_1164 from library ieee
+Using precompiled package numeric_std from library ieee
+Using precompiled package std_logic_arith from library ieee
+Using precompiled package std_logic_unsigned from library ieee
+Compiling package effects_pack
+Compiling architecture behavioral of entity rom [rom_default]
+Compiling architecture behavioral of entity counter_48 [counter_48_default]
+Compiling architecture behavioral of entity cnt_for_n [\cnt_for_n(13)\]
+Compiling architecture behavioral of entity cnt_for_n [\cnt_for_n(23)\]
+Compiling architecture behavioral of entity cnt_for_n [\cnt_for_n(4)\]
+Compiling architecture behavioral of entity cnt_for_n [\cnt_for_n(26)\]
+Compiling architecture behavioral of entity sloupec [sloupec_default]
+Compiling architecture behavioral of entity fsm [fsm_default]
+Compiling architecture behavior of entity fsm_tb
+Time Resolution for simulation is 1ps.
+Compiled 23 VHDL Units
+Built simulation executable Z:/proj_template/FSM_tb_isim_beh.exe
+Fuse Memory Usage: 81168 KB
+Fuse CPU Usage: 370 ms
