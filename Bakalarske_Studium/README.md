@@ -5,28 +5,28 @@ Nasledujúce projekty sa mi podarilo uchovať počas bakalárskeho štúdia
 ### IIS - INFORMAČNÍ SYSTÉMY
 1. projekt (Tímový) - Študentské turnaje 17/30 bodov
 ### IMP - MIKROPROCESOROVÉ A VESTAVĚNÉ SYSTÉMY
-1. projekt - ARM-FITkit3 či jiný HW: Světelná tabule 14/14 bodov
+1. projekt - ARM-FITkit3 či jiný HW: Světelná tabule 14/14 bodov (Jazyk C)
 ### IMS - MODELOVÁNÍ A SIMULACE
-1. projekt (Tímový) - Simulácia skladu Zásielkovne 20/20 bodov
+1. projekt (Tímový) - Simulácia skladu Zásielkovne 20/20 bodov (Jazyk C)
 ### IPK - POČÍTAČOVÉ KOMUNIKACE A SÍTĚ
-1. projekt - HW info na serveri 20/20 bodov
-2. projekt - Sniffer paketov 13.5/20 bodov
+1. projekt - HW info na serveri 20/20 bodov (Jazyk C)
+2. projekt - Sniffer paketov 13.5/20 bodov (Jazyk C)
 ### IPP - PRINCIPY PROGRAMOVACÍCH JAZYKŮ A OOP
-1. projekt - Parser zdrojového kódu 6.3/7 bodov
-2. projekt - Interpret jazyka 8.7/13 bodov
+1. projekt - Parser zdrojového kódu 6.3/7 bodov (PHP)
+2. projekt - Interpret jazyka 8.7/13 bodov (Python)
 ### ITY - TYPOGRAFIE A PUBLIKOVÁNÍ
 1\. úloha - 9.9/10 bodov\
 2\. úloha - 13.7/15 bodov\
 3\. úloha - 13.5/15 bodov\
 5\. úloha - 14/15 bodov
 ### IVH - SEMINÁŘ VHDL
-1. projekt - 10/10 bodov
-2. projekt - 14/15 bodov
-3. projekt - (finálne riešenie) 56/75 bodov
+1. projekt - 10/10 bodov (VHDL)
+2. projekt - 14/15 bodov (VHDL)
+3. projekt - (finálne riešenie) 56/75 bodov (VHDL)
 ### IZP - ZÁKLADY PROGRAMOVÁNÍ
-1. projekt - práca s textom 10/10 bodov
+1. projekt - práca s textom 10/10 bodov (Jazyk C)
 ### SZZ - ŠTÁTNA ZÁVEREČNÁ SKÚŠKA
-* Bakalárska práca - Vizualizace rozsáhlých grafických dat - D
+* Bakalárska práca - Vizualizace rozsáhlých grafických dat - D (Python)
 
 ## Známky v bakalárskom štúdiu
 ### Zimný semester 20/21 1. ročník
