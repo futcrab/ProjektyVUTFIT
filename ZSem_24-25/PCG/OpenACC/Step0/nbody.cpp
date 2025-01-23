@@ -1,0 +1,274 @@
+/**
+ * @file      nbody.cpp
+ *
+ * @author    Peter Durica \n
+ *            Faculty of Information Technology \n
+ *            Brno University of Technology \n
+ *            xduric05@fit.vutbr.cz
+ *
+ * @brief     PCG Assignment 2
+ *
+ * @version   2023
+ *
+ * @date      04 October   2023, 09:00 (created) \n
+ */
+
+#include <cfloat>
+#include <cmath>
+
+#include "nbody.h"
+
+/* Constants */
+constexpr float G                  = 6.67384e-11f;
+constexpr float COLLISION_DISTANCE = 0.01f;
+
+/*********************************************************************************************************************/
+/*                TODO: Fullfill Partile's and Velocitie's constructors, destructors and methods                     */
+/*                                    for data copies between host and device                                        */
+/*********************************************************************************************************************/
+
+/**
+ * @brief Constructor
+ * @param N - Number of particles
+ */
+Particles::Particles(const unsigned N)
+: N(N)
+{
+  positions = new float3[N];
+  velocities = new float3[N];
+  weights = new float[N];
+
+  #pragma acc enter data copyin(this[0:1])
+  #pragma acc enter data create(positions[0:N])
+  #pragma acc enter data create(velocities[0:N])
+  #pragma acc enter data create(weights[0:N])
+}
+
+/// @brief Destructor
+Particles::~Particles()
+{
+  #pragma acc exit data delete(positions[0:N])
+  #pragma acc exit data delete(velocities[0:N])
+  #pragma acc exit data delete(weights[0:N])
+  #pragma acc exit data delete(this[0:1])
+
+  delete [] positions;
+  delete [] velocities;
+  delete [] weights;
+}
+
+/**
+ * @brief Copy particles from host to device
+ */
+void Particles::copyToDevice()
+{
+  #pragma acc update device(positions[0:N])
+  #pragma acc update device(velocities[0:N])
+  #pragma acc update device(weights[0:N])
+}
+
+/**
+ * @brief Copy particles from device to host
+ */
+void Particles::copyToHost()
+{
+  #pragma acc update host(positions[0:N])
+  #pragma acc update host(velocities[0:N])
+  #pragma acc update host(weights[0:N])
+}
+
+/**
+ * @brief Constructor
+ * @param N - Number of particles
+ */
+Velocities::Velocities(const unsigned N)
+:N(N)
+{
+  values = new float3[N];
+
+  #pragma acc enter data copyin(this[0:1])
+  #pragma acc enter data copyin(values[0:N])
+}
+
+/// @brief Destructor
+Velocities::~Velocities()
+{
+  #pragma acc exit data delete(values[0:N])
+  #pragma acc exit data delete(this[0:1])
+
+  delete [] values;
+}
+
+/**
+ * @brief Copy velocities from host to device
+ */
+void Velocities::copyToDevice()
+{
+  #pragma acc update device(values[0:N])
+}
+
+/**
+ * @brief Copy velocities from device to host
+ */
+void Velocities::copyToHost()
+{
+  #pragma acc update host(values[0:N])
+}
+
+/*********************************************************************************************************************/
+
+/**
+ * Calculate gravitation velocity
+ * @param p      - particles
+ * @param tmpVel - temp array for velocities
+ * @param N      - Number of particles
+ * @param dt     - Size of the time step
+ */
+void calculateGravitationVelocity(Particles& p, Velocities& tmpVel, const unsigned N, float dt)
+{
+  /*******************************************************************************************************************/
+  /*                    TODO: Calculate gravitation velocity, see reference CPU version,                             */
+  /*                            you can use overloaded operators defined in Vec.h                                    */
+  /*******************************************************************************************************************/
+  // Edited code from cpu implementation with overloaded float3 operators
+  // Decided not to use tile(x, x), in my case it resulted that every xth result value (16th, 32nd, ...) was NaN
+  #pragma acc parallel loop gang vector present(p, tmpVel)
+  for (unsigned i = 0u; i < N; i++){
+    const float3 myParticle = p.positions[i];
+    const float myWeight = p.weights[i];
+    float3 newVel{};
+
+    #pragma acc loop seq
+    for (unsigned j = 0u; j < N; j++){
+      const float3 otherParticle = p.positions[j];
+      const float otherWeight = p.weights[j];
+
+      const float3 d = otherParticle - myParticle;
+
+      const float r = d.abs(); // I used abs() function from Vec.h library since it does sqrt(d.x * d.x + d.y * d.y + ...) of given vector
+
+      const float f = G * myWeight * otherWeight / ((r * r) + FLT_MIN);
+
+      newVel += (r > COLLISION_DISTANCE) ? d / r * f : 0.f;
+    }
+
+    newVel *= dt / myWeight;
+
+    tmpVel.values[i] = newVel;
+  }
+
+}// end of calculate_gravitation_velocity
+//----------------------------------------------------------------------------------------------------------------------
+
+/**
+ * Calculate collision velocity
+ * @param p      - particles
+ * @param tmpVel - temp array for velocities
+ * @param N      - Number of particles
+ * @param dt     - Size of the time step
+ */
+void calculateCollisionVelocity(Particles& p, Velocities& tmpVel, const unsigned N, float dt)
+{
+  /*******************************************************************************************************************/
+  /*                    TODO: Calculate collision velocity, see reference CPU version,                               */
+  /*                            you can use overloaded operators defined in Vec.h                                    */
+  /*******************************************************************************************************************/
+  // Edited code from cpu implementation with overloaded float3 operators
+  // Decided not to use tile(x, x), in my case it resulted that every xth result value (16th, 32nd, ...) was NaN
+  #pragma acc parallel loop gang vector present(p, tmpVel)
+  for (unsigned i = 0u; i < N; i++){
+    const float3 myParticle = p.positions[i];
+    const float3 myVelocity = p.velocities[i];
+    const float myWeight = p.weights[i];
+
+    float3 newVel{};
+    
+    #pragma acc loop seq
+    for (unsigned j = 0u; j < N; j++){
+      const float3 otherParticle = p.positions[j];
+      const float3 otherVelocity = p.velocities[j];
+      const float otherWeight = p.weights[j];
+
+      const float3 d = otherParticle - myParticle;
+
+      const float r = d.abs(); // I used abs() function from Vec.h library since it does sqrt(d.x * d.x + d.y * d.y + ...) of given vector
+
+      newVel += (r > 0.f && r < COLLISION_DISTANCE)
+                ? (((myWeight * myVelocity - otherWeight * myVelocity + 2.f * otherWeight * otherVelocity) / (myWeight + otherWeight)) - myVelocity) 
+                : 0.f;
+    }
+    tmpVel.values[i] += newVel;         
+  }
+
+}// end of calculate_collision_velocity
+//----------------------------------------------------------------------------------------------------------------------
+
+/**
+ * Update particles
+ * @param p      - particles
+ * @param tmpVel - temp array for velocities
+ * @param N      - Number of particles
+ * @param dt     - Size of the time step
+ */
+void updateParticles(Particles& p, Velocities& tmpVel, const unsigned N, float dt)
+{
+  /*******************************************************************************************************************/
+  /*                    TODO: Update particles position and velocity, see reference CPU version,                     */
+  /*                            you can use overloaded operators defined in Vec.h                                    */
+  /*******************************************************************************************************************/
+  #pragma acc parallel loop gang vector present(p, tmpVel)
+  for (unsigned i = 0; i < N; i++){
+    p.velocities[i] += tmpVel.values[i];
+
+    p.positions[i] += p.velocities[i] * dt;
+  }
+
+}// end of update_particle
+//----------------------------------------------------------------------------------------------------------------------
+
+/**
+ * Calculate particles center of mass
+ * @param p    - particles
+ * @param com  - pointer to a center of mass
+ * @param lock - pointer to a user-implemented lock
+ * @param N    - Number of particles
+ */
+void centerOfMass(Particles& p, float4& com, int* lock, const unsigned N)
+{
+
+}// end of centerOfMass
+//----------------------------------------------------------------------------------------------------------------------
+
+/**
+ * CPU implementation of the Center of Mass calculation
+ * @param particles - All particles in the system
+ * @param N         - Number of particles
+ */
+float4 centerOfMassRef(MemDesc& memDesc)
+{
+  float4 com{};
+
+  for (std::size_t i{}; i < memDesc.getDataSize(); i++)
+  {
+    const float3 pos = {memDesc.getPosX(i), memDesc.getPosY(i), memDesc.getPosZ(i)};
+    const float  w   = memDesc.getWeight(i);
+
+    // Calculate the vector on the line connecting current body and most recent position of center-of-mass
+    // Calculate weight ratio only if at least one particle isn't massless
+    const float4 d = {pos.x - com.x,
+                      pos.y - com.y,
+                      pos.z - com.z,
+                      ((memDesc.getWeight(i) + com.w) > 0.0f)
+                        ? ( memDesc.getWeight(i) / (memDesc.getWeight(i) + com.w))
+                        : 0.0f};
+
+    // Update position and weight of the center-of-mass according to the weight ration and vector
+    com.x += d.x * d.w;
+    com.y += d.y * d.w;
+    com.z += d.z * d.w;
+    com.w += w;
+  }
+
+  return com;
+}// enf of centerOfMassRef
+//----------------------------------------------------------------------------------------------------------------------

@@ -1,5 +1,18 @@
 # Projekty vypracované počas štúdia na VUT FIT v magisterskom odbore NGRI (Počítačová grafika a interakce) + Vybrané projekty z bakalárskeho štúdia
-
+## Zimný semester 24/25 2. ročník
+### PGPa - Pokročilá počítačová grafika (v angličtině) (72 - C)
+1. projekt - Hair simulation and rendering 23/30 bodov
+### PCG - Paralelní výpočty na GPU (82 - B)
+1. projekt - CUDA nbody simulation 20/20 bodov
+2. projekt - OpenACC nbody simulation 10/10 bodov
+### UPA - Ukládání a příprava dat (59 - E)
+1. projekt (Tímový) - Extrakce dat z webu 8/8 bodov
+2. projekt (Tímový) - Ukládání rozsáhlých dat v NoSQL databázích 7/8 bodov
+3. projekt (Tímový) - Příprava dat a jejich popisná charakteristika 8/8 bodov
+### SUI - Umělá inteligence a strojové učení (52 - E)
+1. projekt (Tímový) - Základy Machine Learning 6.75/7 bodov
+2. projekt (Tímový) - Neuronové sítě 7/7 bodov
+3. projekt (Tímový) - Prohledávání 4.1/6 bodov
 ## Zimný semester 23/24 1. ročník
 ### AVS - ARCHITEKTURY VÝPOČETNÍCH SYSTÉMŮ (65 - D)
 1. projekt - Vektorizace 6/10 bodov

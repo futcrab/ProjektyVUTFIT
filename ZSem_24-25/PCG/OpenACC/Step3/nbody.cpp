@@ -1,0 +1,253 @@
+/**
+ * @file      nbody.cpp
+ *
+ * @author    Peter Durica \n
+ *            Faculty of Information Technology \n
+ *            Brno University of Technology \n
+ *            xduric05@fit.vutbr.cz
+ *
+ * @brief     PCG Assignment 2
+ *
+ * @version   2023
+ *
+ * @date      04 October   2023, 09:00 (created) \n
+ */
+
+#include <cfloat>
+#include <cmath>
+
+#include "nbody.h"
+#include "Vec.h"
+
+/* Constants */
+constexpr float G                  = 6.67384e-11f;
+constexpr float COLLISION_DISTANCE = 0.01f;
+
+/*********************************************************************************************************************/
+/*                TODO: Fullfill Partile's and Velocitie's constructors, destructors and methods                     */
+/*                                    for data copies between host and device                                        */
+/*********************************************************************************************************************/
+
+/**
+ * @brief Constructor
+ * @param N - Number of particles
+ */
+Particles::Particles(const unsigned N)
+: N(N)
+{
+  positions = new float3[N];
+  velocities = new float3[N];
+  weights = new float[N];
+
+  #pragma acc enter data copyin(this[0:1])
+  #pragma acc enter data create(positions[0:N])
+  #pragma acc enter data create(velocities[0:N])
+  #pragma acc enter data create(weights[0:N])
+}
+
+/// @brief Destructor
+Particles::~Particles()
+{
+  #pragma acc exit data delete(positions[0:N])
+  #pragma acc exit data delete(velocities[0:N])
+  #pragma acc exit data delete(weights[0:N])
+  #pragma acc exit data delete(this[0:1])
+
+  delete [] positions;
+  delete [] velocities;
+  delete [] weights;
+}
+
+/**
+ * @brief Copy particles from host to device
+ */
+void Particles::copyToDevice()
+{
+  #pragma acc update device(positions[0:N])
+  #pragma acc update device(velocities[0:N])
+  #pragma acc update device(weights[0:N])
+}
+
+/**
+ * @brief Copy particles from device to host
+ * @param streamNum - Number of stream that will be used to transfer data asynchronously
+ */
+void Particles::copyToHost(unsigned streamNum)
+{
+  #pragma acc update host(positions[0:N]) async(streamNum)
+  #pragma acc update host(velocities[0:N]) async(streamNum)
+  #pragma acc update host(weights[0:N]) async(streamNum)
+}
+
+/*********************************************************************************************************************/
+
+/**
+ * Calculate velocity
+ * @param pIn  - particles input
+ * @param pOut - particles output
+ * @param N    - Number of particles
+ * @param dt   - Size of the time step
+ * @param streamNum - Number of stream that will be used in calculation
+ */
+void calculateVelocity(Particles& pIn, Particles& pOut, const unsigned N, float dt, const unsigned streamNum)
+{
+  /*******************************************************************************************************************/
+  /*                    TODO: Calculate gravitation velocity, see reference CPU version,                             */
+  /*                            you can use overloaded operators defined in Vec.h                                    */
+  /*******************************************************************************************************************/
+  // Edited code from cpu implementation with overloaded float3 operators
+  // Decided not to use tile(x, x), in my case it resulted that every xth result value (16th, 32nd, ...) was NaN
+  #pragma acc parallel loop gang vector present(pIn, pOut) async(streamNum)
+  for (unsigned i = 0u; i < N; i++){
+    const float3 myParticle = pIn.positions[i];
+    const float3 myVelocity = pIn.velocities[i];
+    const float myWeight = pIn.weights[i];
+
+    float3 newVelG{};
+    float3 newVelC{};
+    #pragma acc loop seq
+    for (unsigned j = 0u; j < N; j++){
+      const float3 otherParticle = pIn.positions[j];
+      const float3 otherVelocity = pIn.velocities[j];
+      const float otherWeight = pIn.weights[j];
+
+      const float3 d = otherParticle - myParticle;
+
+      const float r = d.abs(); // I used abs() function from Vec.h library since it does sqrt(d.x * d.x + d.y * d.y + ...) of given vector
+
+      const float f = G * myWeight * otherWeight / ((r * r) + FLT_MIN);
+
+      newVelG += (r > COLLISION_DISTANCE) ? d / r * f : 0.f;
+      newVelC += (r > 0.f && r < COLLISION_DISTANCE)
+                ? (((myWeight * myVelocity - otherWeight * myVelocity + 2.f * otherWeight * otherVelocity) / (myWeight + otherWeight)) - myVelocity) 
+                : 0.f;
+    }
+    // Both gravitational and collisional velocity is independetly calculated and then added together at the end
+    newVelG *= dt / myWeight;
+
+    pOut.velocities[i] += (newVelG + newVelC);
+    pOut.positions[i] += pOut.velocities[i] * dt;
+  }
+
+}// end of calculate_gravitation_velocity
+//----------------------------------------------------------------------------------------------------------------------
+
+/**
+ * Calculate particles center of mass
+ * @param p         - particles
+ * @param comBuffer - pointer to a center of mass buffer
+ * @param N         - Number of particles
+ * @param streamNum - Number of stream that will be used in calculation
+ */
+void centerOfMass(Particles& p, float4* comBuffer, const unsigned N, const unsigned streamNum)
+{
+  /********************************************************************************************************************/
+  /*                 TODO: Calculate partiles center of mass inside center of mass buffer                             */
+  /********************************************************************************************************************/
+  //Zero out comBuffer
+  #pragma acc update device(comBuffer[0:256]) async(streamNum)
+  
+  // Filling of comBuffer is splitted into blocks to secure synchronization
+  for (unsigned startIndex = 0; startIndex < N; startIndex += 256){
+    unsigned endIndex = std::min(startIndex + 256, N);
+    
+    // Rewritten Cpu implementation
+    // If N is larger than 256 some or all values in buffer represent more particles
+    #pragma acc parallel loop gang vector present(p, comBuffer) async(streamNum)
+    for (unsigned i = startIndex; i < endIndex; i++){
+      float4 d{};
+      
+      const float newParticleX = p.positions[i].x;
+      const float newParticleY = p.positions[i].y;
+      const float newParticleZ = p.positions[i].z;
+      const float newParticleWeight = p.weights[i];
+      
+      // Modulo operator is used to calculate position in comBuffer
+      const float PartialCOMX = comBuffer[i % 256].x;
+      const float PartialCOMY = comBuffer[i % 256].y;
+      const float PartialCOMZ = comBuffer[i % 256].z;
+      const float PartialCOMWeight = comBuffer[i % 256].w;
+
+      d.x = newParticleX - PartialCOMX;
+      d.y = newParticleY - PartialCOMY;
+      d.z = newParticleZ - PartialCOMZ;
+      d.w = ((newParticleWeight + PartialCOMWeight) > 0.f)
+            ? (newParticleWeight / (newParticleWeight + PartialCOMWeight))
+            : 0.f;
+
+      comBuffer[i % 256].x += d.x * d.w;
+      comBuffer[i % 256].y += d.y * d.w;
+      comBuffer[i % 256].z += d.z * d.w;
+      comBuffer[i % 256].w += newParticleWeight;
+      
+    }
+  }
+
+  // Reduction of comBuffer using stride to calculate position of next particle
+  for (unsigned stride = 128; stride > 0u; stride >>= 1u){
+    #pragma acc parallel loop gang vector present(comBuffer) async(streamNum)
+    for (unsigned i = 0; i < stride; i++){
+      float4 d{};
+
+      const float myParticleX = comBuffer[i].x;
+      const float myParticleY = comBuffer[i].y;
+      const float myParticleZ = comBuffer[i].z;
+      const float myParticleWeight = comBuffer[i].w;
+
+      const float newParticleX = comBuffer[i + stride].x;
+      const float newParticleY = comBuffer[i + stride].y;
+      const float newParticleZ = comBuffer[i + stride].z;
+      const float newParticleWeight = comBuffer[i + stride].w;
+
+      d.x = newParticleX - myParticleX;
+      d.y = newParticleY - myParticleY;
+      d.z = newParticleZ - myParticleZ;
+      d.w = ((newParticleWeight + myParticleWeight) > 0.f)
+            ? (newParticleWeight / (newParticleWeight + myParticleWeight))
+            : 0.f;
+
+      comBuffer[i].x += d.x * d.w;
+      comBuffer[i].y += d.y * d.w;
+      comBuffer[i].z += d.z * d.w;
+      comBuffer[i].w += newParticleWeight;
+      
+    }
+  }
+  // after calculation update comBuffer with result values so CPU can access it
+  #pragma acc update host(comBuffer[0:256]) async(streamNum)
+}// end of centerOfMass
+//----------------------------------------------------------------------------------------------------------------------
+
+/**
+ * CPU implementation of the Center of Mass calculation
+ * @param particles - All particles in the system
+ * @param N         - Number of particles
+ */
+float4 centerOfMassRef(MemDesc& memDesc)
+{
+  float4 com{};
+
+  for (std::size_t i{}; i < memDesc.getDataSize(); i++)
+  {
+    const float3 pos = {memDesc.getPosX(i), memDesc.getPosY(i), memDesc.getPosZ(i)};
+    const float  w   = memDesc.getWeight(i);
+
+    // Calculate the vector on the line connecting current body and most recent position of center-of-mass
+    // Calculate weight ratio only if at least one particle isn't massless
+    const float4 d = {pos.x - com.x,
+                      pos.y - com.y,
+                      pos.z - com.z,
+                      ((memDesc.getWeight(i) + com.w) > 0.0f)
+                        ? ( memDesc.getWeight(i) / (memDesc.getWeight(i) + com.w))
+                        : 0.0f};
+
+    // Update position and weight of the center-of-mass according to the weight ration and vector
+    com.x += d.x * d.w;
+    com.y += d.y * d.w;
+    com.z += d.z * d.w;
+    com.w += w;
+  }
+
+  return com;
+}// enf of centerOfMassRef
+//----------------------------------------------------------------------------------------------------------------------

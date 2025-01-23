@@ -1,0 +1,37 @@
+Cílem této části projektu je vyzkoušet si využití webových stránek jako zdroje dat, konkrétně pro automatizované získání:
+Odkazů (seznamu URL) z dynamických webových stránek
+Konkrétních informací z většího množství webových stránek
+
+Pokyny k řešení:
+Zvolte si vhodný e-shop nabízející libovolné produkty
+Pokud možno zahraniční.
+
+K produktům musí být uvedeny nějaké doplňující parametry (např. u telefonů model procesoru, velikost paměti, rozlišení fotoaparátu, u jízdních kol materiál rámu, hmotnost, apod.), ideálně ve formě tabulky.
+
+Vyhněte se nejběžnějším e-shopům (alza.cz, amazon.com, apod.), snažte se svojí volbou minimalizovat šanci, že si jiný tým zvolí stejný e-shop. Nesdělujte volbu e-shopu mimo tým. Předejdete tím komplikacím způsobeným např. přílišným zatížením serverů e-shopu provozem z FIT (viz poznámky níže).
+
+Implementujte program (skript), který automatizovaně získá seznam URL alespoň 150 srovnatelných produktů dostupných na e-shopu.
+
+Ideální je např. zpracovat stránku nebo stránky věnované nějaké konkrétní kategorii produktů, které mají alespoň některé parametry společné pro více položek.
+
+Implementujte program (skript), který bude mít na vstupu seznam URL produktů a pro každý takový produkt získá z příslušné cílové stránky název produktu, aktuálně platnou cenu a hodnoty minimálně pěti doplňujících parametrů.
+
+Parametry zvolte tak, aby byly společné pro většinu produktů na seznamu, ale uvažujte i situaci, že hodnota některých parametrů nebude u některého produktu uvedena.
+
+Pro využití dat v projektu 3 je ideální, pokud alespoň jeden atribut bude číselný a jeden kategorický.
+
+Výstup skriptu bude mít formát TSV: na každém řádku URL produktu (pro identifikaci), název produktu, aktuální prodejní cenu a hodnoty jednotlivých parametrů oddělené tabulátory (znak TAB), minimálně tedy 8 sloupců, pro všechna URL ze seznamu. Názvy sloupců (záhlaví) nevypisujte, význam sloupců prosím zdokumentujte v README (viz níže).
+
+Se všemi extrahovanými hodnotami zacházejte jako s řetězci a hodnoty ukládejte v podobě, v jaké jsou uvedeny (tzn. není třeba normalizovat jednotky, převádět na čísla apod.) Tyto kroky se v případě potřeby budou řešit v rámci projektu 3.
+
+Způsob implementace:
+Řešení musí být spustitelné na serveru merlin. Pokud by tento server byl pro vaše záměry příliš omezující, je možné se individuálně domluvit na výjimkách v předstihu (do 6.10.). Ověřte si předem, co je na serveru merlin k dispozici.
+
+Implementované programy vypisují svoje výsledky (seznam URL u prvního skriptu a tabulka parametrů u druhého skriptu) na standardní výstup (stdout). Uložení výsledku do souborů požadovaných níže se realizuje přesměrováním při spuštění z příkazové řádky.
+
+Můžete využít libovolnou implementační platformu (Python, JavaScript, Java, bash, ...), program ale musí běžet lokálně (na serveru merlin) a nesmí využívat online služby třetích stran.
+
+Využití libovolných volně dostupných knihoven (jako např. puppeteer, BeautifulSoup, apod.) je povoleno. Příklady vhodných knihoven budou uvedeny v rámci přednášek.
+Je možno zpracovávat jak HTML kód stránek, tak i vložená strukturovaná data (např. JSON-LD, RDFa, apod.), podle toho, co se bude zdát jednodušší.
+
+Oba skripty (bod 2 a 3 zadání) musí umožnit opakované spuštění, které dá výsledek odpovídající zadání. Tento výsledek ale může být pokaždé jiný (vyberou se jiné produkty, změní se cena, apod.)
