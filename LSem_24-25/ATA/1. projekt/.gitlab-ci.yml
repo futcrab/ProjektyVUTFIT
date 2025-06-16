@@ -1,0 +1,20 @@
+stages:
+  - test
+
+test_normal_mode:
+  stage: test
+  image: python:3.11
+  script:
+    - python3 -m unittest tests.test_cartctl.TestCartRequests.test_normal_mode -v
+
+test_unload_only_mode:
+  stage: test
+  image: python:3.11
+  script:
+    - python3 -m unittest tests.test_cartctl.TestCartRequests.test_unload_only_mode -v
+
+test_operational:
+  stage: test
+  image: python:3.11
+  script:
+    - python3 -m unittest tests.test_cartctl.TestCartRequests.test_operational -v

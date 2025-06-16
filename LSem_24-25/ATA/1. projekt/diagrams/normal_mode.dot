@@ -1,0 +1,35 @@
+digraph normal_mode {
+    invisible_node [shape=point style=invis width=0 height=0];
+    
+    start [label="Idle", shape="doublecircle"];
+    s1 [label="Calculate track"];
+    s2 [label="On move"];
+    s3 [label="On station"];
+    s4 [label="Unload"];
+    s5 [label="After Unload"];
+    s6 [label="Load"];
+    s7 [label="After station"];
+    s8 [label="Unload-only mode"];
+    
+    
+    invisible_node -> start;
+    start -> s1 [label="New request"];
+    s1 -> start [label="No requests", decorate="true"];
+    s1 -> s2 [label="Moving on best route"];
+    s2 -> s1 [label="New request or no requests", decorate="true"];
+    s2 -> s3 [label="Arrived at station"];
+    
+    s3 -> s5;
+    s3 -> s4 [label="Has something to unload"];
+    s4 -> s5;
+    s4 -> s4 [label="Has more to unload"];
+    
+    s5 -> s6 [label="Has something to load"];
+    s5 -> s7;
+    s6 -> s7;
+    s6 -> s6 [label="Has more to load"];
+    
+    s7 -> s2 [label="Continue route"];
+    s7 -> s8 [label="Priority cargo was loaded"];
+    s8 -> s2 [label="Return from unload-only mode"];
+}

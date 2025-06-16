@@ -1,0 +1,14 @@
+digraph normal_mode {
+    invisible_node1 [shape=point style=invis width=0 height=0];
+    invisible_node2 [shape=point style=invis width=0 height=0];
+    
+    start [label="Find route to priority cargo destination"];
+    s1 [label="Move to priority cargo destination"];
+    s2 [label="Unload priority cargo"];
+    
+    invisible_node1 -> start [label="From normal mode"];
+    start -> s1;
+    s1 -> s2;
+    s2 -> start [label="Cart has more priority cargo loaded"];
+    s2 -> invisible_node2 [label="Back to normal mode"];
+}
