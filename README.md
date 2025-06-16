@@ -13,6 +13,20 @@
 1. projekt (Tímový) - Základy Machine Learning 6.75/7 bodov
 2. projekt (Tímový) - Neuronové sítě 7/7 bodov
 3. projekt (Tímový) - Prohledávání 4.1/6 bodov
+## Letný semester 24/25 2. ročník
+### MTIa - Moderní trendy informatiky (v angličtině) (B)
+### UXIa - Uživatelská zkušenost a návrh rozhraní a služeb (v angličtině) (62 - D)
+1. projekt - Perfectly Useless UI Design 5/5 bodov
+2. projekt - Iconic Box Model 5/5 bodov
+3. projekt - Individual Design (The Malleable Glyph) 17/20 bodov
+4. projekt (Esej) - Navigation in Videogames 14/30 bodov
+5. projekt (Tímový) - Bargiva app 21/40 bodov
+### VGE - Výpočetní geometrie (83 - B)
+1. projekt - Čtení  3x 6/6 bodov
+2. projekt - Vizualizácia a porovnanie algoritmov pre surface simplification 19/31 bodov
+### ATA - Automatizované testování a dynamická analýza (77 - C)
+1. projekt - CI pipeline unit tests 13.2/20 bodov
+2. projekt - Dynamické testovanie za pochodu 20/20 bodov
 ## Zimný semester 23/24 1. ročník
 ### AVS - ARCHITEKTURY VÝPOČETNÍCH SYSTÉMŮ (65 - D)
 1. projekt - Vektorizace 6/10 bodov
